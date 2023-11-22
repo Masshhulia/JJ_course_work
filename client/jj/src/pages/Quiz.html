@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Juniors Journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Didact+Gothic&family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header header-main">
+            <div class="container">
+                <div class="header_inner">
+                    <a href="" class="logo">
+                        <img src="images/JJ_logo.svg" alt="" class="logo_img">
+                    </a>
+                    <nav class="menu">
+                        <ul class="menu__list">
+                            <li class="menu__item">
+                                <a href="#" class="menu__list-link">Home</a>
+                            </li>
+                            <li class="menu__item">
+                                <a href="#" class="menu__list-link">Advices</a>
+                            </li>
+                            <li class="menu__item">
+                                <a href="#" class="menu__list-link">RoadMaps</a>
+                            </li>
+                            <li class="menu__item">
+                                <a href="#" class="menu__list-link">Quiz</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="buttons__container">
+                        <button class="log__in">Log In</button>
+                        <button class="log__up">Log Up</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <section class="autorize">
+                <div class="autorize__container-q">
+                    <div class="text__quiz">
+                        <div class="upper_text">
+                            <h1 class="title_quiz">React Questions</h1>
+                           </div>
+                           <div class="upper_text2">
+                            <h2 class="subtitle_quiz">Test, rate and improve your React knowledge with these questions.</h2>
+                           </div>
+                    </div>
+                    <div class="lane-Progress_container">
+                        <div class="w3-light-grey">
+                            <div id="myBar" class="w3-container w3-green" style="height:10px;width:0%"></div>
+                        </div>
+                        <p id="demo" class="lane-Progress_text">0 из 51</p>
+                    </div>
+                    <div class="questions__container">
+                        <h1 class="question__text">
+                            How to write a comment in React?
+                        </h1>
+                        <button class="reveal__button">Click to Reveal the Answer</button>
+                    </div>
+                    <div class="buttons__quiz">
+                        <button class="already-button" onclick="move()">Already know that</button>
+                        <button class="didnt-button" onclick="move()">Didn't Know that</button>
+                        <button class="skip-button" onclick="move()">Skip Question</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script src="fuctions.js"></script>
+    </div>  
+</body>
+</html>

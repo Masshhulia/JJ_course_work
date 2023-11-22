@@ -1,0 +1,40 @@
+/* Ваши стили могут выглядеть по-разному, в зависимости от дизайна вашего приложения */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .checkbox {
+    width: 27px;
+    height: 27px;
+    border-radius: 4px;
+    border: 1px #AEAEB2 solid;
+  }
+  
+  .checkmark {
+    width: 18.90px;
+    height: 18.90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .checkmark div {
+    width: 18.90px;
+    height: 18.90px;
+    position: relative;
+  }
+  
+  .checkmark div::before {
+    content: '';
+    width: 12.60px;
+    height: 8.66px;
+    position: absolute;
+    left: 3.15px;
+    top: 5.12px;
+    border-bottom: 1.50px white solid;
+    border-right: 1.50px white solid;
+    transform: rotate(45deg);
+  }
+  
