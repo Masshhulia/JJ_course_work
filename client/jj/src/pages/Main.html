@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Juniors Journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Didact+Gothic&family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header header-main">
+            <div class="container">
+                <div class="header_inner">
+                    <a href="" class="logo">
+                        <img src="images/JJ_logo.svg" alt="" class="logo_img">
+                    </a>
+                    <nav class="menu">
+                        <ul class="menu__list">
+                            <li class="menu__item">
+                                <a href="#" class="menu__list-link">Home</a>
+                            </li>
+                            <li class="menu__item">
+                                <a href="#" class="menu__list-link">Advices</a>
+                            </li>
+                            <li class="menu__item">
+                                <a href="#" class="menu__list-link">RoadMaps</a>
+                            </li>
+                            <li class="menu__item">
+                                <a href="quiz-main.html" class="menu__list-link">Quiz</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="buttons__container">
+                        <button class="log__in" onclick="document.location = 'autorization.html'">Log In</button>
+                        <button class="log__up" onclick="document.location = '#create'">Log Up</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+          <section class="top">
+            <div class="container">
+                <h1 class="title">
+                    Juniors Journey -  it’s your way to study new technologies
+                </h1>
+                <h2 class="subtitle">
+                    Guide to the world of code: follow your path with our Roadmaps!
+                </h2>
+                <a href="#create" class="start__link">Start learning now</a>
+            </div>
+          </section>  
+          <div class="back__image" style="background-image: url(images/road.svg);"></div>
+          <section class="create__account" id = "create">
+            <div class="create__container">
+                <h2 class="create__title">
+                    Create an account
+                </h2>
+                <div class="input__container">
+                    <input type="text" class="input_field" placeholder="First name">
+                    <input type="text" class="input_field" placeholder="Last name">
+                    <input type="text" class="input_field" placeholder="Email adress">
+                    <input type="text" class="input_field" placeholder="Password">
+                </div>
+                <buttton class="submit__button">Submit</buttton>
+                <img src="images/create_people.svg" alt="" class="people__img">
+            </div>
+          </section>
+        </main>
+        <!-- <footer class="footer">
+            <div class="container">
+                <nav class="footer__menu">
+                    <ul class="footer__menu-list">
+                        <li class="footer__menu-item">
+                            <a href="#" class="footer__menu-link">Home</a>
+                        </li>
+                        <li class="footer__menu-item">
+                            <a href="#" class="footer__menu-link">Advices</a>
+                        </li>
+                        <li class="footer__menu-item">
+                            <a href="#" class="footer__menu-link">RoadMaps</a>
+                        </li>
+                        <li class="footer__menu-item">
+                            <a href="#" class="footer__menu-link">Quiz</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="created__text-container">
+                    <p class="created__text">Created by Maria Basharimova</p>
+                </div>
+                <div class="links-text">
+                    <a href="" class="git"></a>
+                    <a href="" class="linkedIn"></a>
+                    <a href="" class="telegram"></a>
+                </div>
+            </div>
+        </footer> -->
+    </div>
+</body>
+</html>
