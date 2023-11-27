@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 
 
-const achievementsRouter = require('./AchievementsRouter')
+const accountsRouter = require('./AccountRouter')
 const complitedRMRouter = require('./CompletedRoadmaps')
 const optionsRouter = require('./OptionsRouter')
 const questionsRouter = require('./QuestionsRouter')
@@ -16,7 +16,7 @@ const userachievementsRouter = require('./UserAchievRouter')
 const userRouter = require('./UserRouter')
 
 
-router.use('/achieve', achievementsRouter)
+router.use('/account', accountsRouter)
 router.use('/complitedRM', complitedRMRouter)
 router.use('/options', optionsRouter)
 router.use('/questions', questionsRouter)
