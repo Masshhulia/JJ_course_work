@@ -1,27 +1,31 @@
-// AnswerOptions.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Checkbox from '../Checkbox/Checkbox';
-import '../Checkbox/checkstyles.css'
+import '../Checkbox/checkstyles.css';
 
-const AnswerOptions = () => {
-  const answerOptions = ["Option 1", "Option 2", "Option 3", "Option 4"];
-  const [selectedOptions, setSelectedOptions] = useState(Array(answerOptions.length).fill(false));
+const AnswerOptions = ({ answerOptions, onAnswerSelected, currentQuestionIndex, selectedAnswers }) => {
+  const [selectedOptions, setSelectedOptions] = useState(Array(answerOptions?.length || 0).fill(false));
+
+  useEffect(() => {
+    // Update selected options when the current question changes
+    setSelectedOptions(selectedAnswers[currentQuestionIndex] || Array(answerOptions?.length || 0).fill(false));
+  }, [currentQuestionIndex, selectedAnswers]);
 
   const handleCheckboxChange = (index) => {
     const newSelectedOptions = [...selectedOptions];
     newSelectedOptions[index] = !newSelectedOptions[index];
     setSelectedOptions(newSelectedOptions);
+    onAnswerSelected(index);
   };
 
   return (
     <div className="answer-options__container">
-      {answerOptions.map((option, index) => (
+      {answerOptions?.map((option, index) => (
         <div key={index} className="answer-option">
           <Checkbox
             isChecked={selectedOptions[index]}
             onChange={() => handleCheckboxChange(index)}
           />
-          <div className="answer-text">{option}</div>
+          <div className="answer-text">{option.option_text}</div>
         </div>
       ))}
     </div>
