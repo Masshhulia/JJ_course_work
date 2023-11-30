@@ -30,7 +30,7 @@ const Button = ({ left, top, label, onClick, onModalOpen }) => (
       }}
       onClick={() => {
         onClick();
-        onModalOpen(true);
+        onModalOpen(); // Make sure this function is responsible for closing the modal
       }}
     >
       {label}
