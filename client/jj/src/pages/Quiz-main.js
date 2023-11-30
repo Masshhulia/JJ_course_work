@@ -1,9 +1,25 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import QuizLink from '../components/QuizLink/QuizLink';
 import Header from '../components/Header/Header';
+import { getTests } from '../http/testsApi';
 
 const Quiz_main = () => {
+  const [tests, setTests] = useState([]);
+
+  useEffect(() => {
+    const fetchTestsData = async () => {
+      try {
+        const fetchedTests = await getTests();
+        setTests(fetchedTests);
+      } catch (error) {
+        console.error('Error fetching tests:', error.message);
+      }
+    };
+
+    fetchTestsData();
+  }, []);
+
   return (
     <main className="main">
       <Header />
@@ -15,8 +31,9 @@ const Quiz_main = () => {
           <div className="subtitle__quiz">
             <h2 className="quiz__text2">Quizzes to help you test and improve your knowledge and skill up</h2>
           </div>
-          <QuizLink to="/quiz" text="Frontend Quiz" description="Test your knowledge in frontend development" />
-          <QuizLink to="/backend-quiz" text="Backend Quiz" description="Test your knowledge in backend development" />
+          {tests.map((test) => (
+            <QuizLink key={test.test_ID} to={`/quiz`} text={test.title} description={test.Description} />
+          ))}
         </div>
       </section>
     </main>
@@ -24,4 +41,5 @@ const Quiz_main = () => {
 };
 
 export default Quiz_main;
+
 
