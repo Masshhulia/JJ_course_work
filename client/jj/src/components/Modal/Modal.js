@@ -1,7 +1,7 @@
 // Modal.js
 import React from 'react';
 
-const Modal = ({ isOpen, onClose }) => (
+const Modal = ({ isOpen, onClose, selectedStep }) => (
   <div
     style={{
       display: isOpen ? 'block' : 'none',
@@ -17,11 +17,8 @@ const Modal = ({ isOpen, onClose }) => (
       zIndex: 999,
     }}
   >
-    <p>Interfaces are a legacy of older versions of C#, and are interchangeable with the newer abstract class feature.
- When you need a list of capabilities and data that are classes-agnostic, use an interface. When you need a certain object type to share characteristics, use an abstract class.
- You should use both an interface and an abstract class when defining any complex object.
-    </p>
-    <button onClick={() => onClose(false)}>Close</button>
+    <p>{selectedStep ? selectedStep.title : ''}</p>
+    <button onClick={() => onClose()}>Close</button>
   </div>
 );
 
