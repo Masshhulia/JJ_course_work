@@ -13,9 +13,9 @@ class AccountController {
       }
 
       const currentDate = new Date();
-    const registrationDate = new Date(user.RegistrationDate); // предположим, что RegistrationDate - это строка с датой
+      const registrationDate = new Date(user.RegistrationDate); 
 
-    const daysOnPlatform = Math.floor((currentDate - registrationDate) / (1000 * 60 * 60 * 24));
+      const daysOnPlatform = Math.floor((currentDate - registrationDate) / (1000 * 60 * 60 * 24));
 
     const responseData = {
         name: user.name,
