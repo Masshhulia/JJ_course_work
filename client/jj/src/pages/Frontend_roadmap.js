@@ -173,37 +173,75 @@
 
 
 // FrontendRoadmap.js
+// FrontendRoadmap.js
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/Header';
 import Button from '../components/RoadmapButton/RoadmapButton';
 import Modal from '../components/Modal/Modal';
 import { getStepsFromDatabase } from '../http/roadmapStepsAPI';
+import { getRoadmapPageFromDatabase } from '../http/roadmapsPGApi';
+import { getLinksForPageFromDatabase } from '../http/roamapsLinksApi';
+import { getAllLinksFromDatabase } from '../http/roamapsLinksApi';
 
 const FrontendRoadmap = () => {
   const [selectedStep, setSelectedStep] = useState(null);
   const [steps, setSteps] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [modalData, setModalData] = useState(null);
+  const [linksData, setLinksData] = useState([]);
 
   useEffect(() => {
-    const fetchSteps = async () => {
+    const fetchData = async () => {
       try {
         const stepsFromDB = await getStepsFromDatabase();
         setSteps(stepsFromDB);
+  
+        const linksFromDB = await getAllLinksFromDatabase(); 
+        setLinksData(linksFromDB);
+  
+        if (selectedStep) {
+          const pageData = await getRoadmapPageFromDatabase(selectedStep.roadmap_ID);
+          console.log('Page data before setModalData:', pageData);
+          setModalData(pageData);
+          setModalOpen(true);
+        }
       } catch (error) {
-        console.error('Error fetching steps from the database:', error.message);
+        console.error('Error fetching data:', error.message);
       }
     };
 
-    fetchSteps();
-  }, []);
+    fetchData();
+  }, [selectedStep]);
 
-  const handleButtonClick = (step) => {
+  const handleButtonClick = async (step) => {
+    console.log('Handling button click with step:', step);
+    console.log('Step data:', step);
+  
     setSelectedStep(step);
-    setModalOpen(true);
+  
+    try {
+      if (step.roadmap_ID !== undefined) {
+        const linksForPage = await getLinksForPageFromDatabase(step.roadmap_ID);
+  
+        if (linksForPage.length > 0) {
+       
+          const filteredLinks = linksForPage.filter(link => link.pages_ID === step.page_ID);
+          setModalData({ ...step, links: filteredLinks });
+          setModalOpen(true);
+        } else {
+          console.error('No links found for the selected step.');
+        }
+      } else {
+        console.error('roadmap_ID is undefined or null.');
+      }
+    } catch (error) {
+      console.error('Error fetching data for the modal:', error.message);
+    }
   };
 
   const handleModalClose = () => {
     setSelectedStep(null);
+    setModalData(null);
     setModalOpen(false);
   };
 
@@ -215,43 +253,31 @@ const FrontendRoadmap = () => {
           <span style={{ color: '#590070', fontSize: '40px', fontFamily: 'Didact Gothic', fontWeight: 400, wordWrap: 'break-word' }}>Front-end</span>
           <span style={{ color: 'black', fontSize: '40px', fontFamily: 'Didact Gothic', fontWeight: 400, wordWrap: 'break-word' }}> Developer</span>
         </div>
+        
         <div style={{ height: '244.49px', left: '633px', top: '312.44px', position: 'absolute' }}>
+        
           {steps.map((step, index) => (
             <div key={index}>
-             <Button
+              <Button
                 left={0}
                 top={index * 176}
                 label={step.title}
-                onClick={() => handleButtonClick(step)}
-                onModalClose={handleModalClose} // Use the same prop name
+                onClick={() => {
+                  console.log('Step data:', step);
+                  handleButtonClick(step);
+                }}
+                onModalOpen={handleModalClose}
               />
+              {index < steps.length - 1 && (
+                <div style={{ width: '2px', height: '50px', transform: 'rotate(0deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted', top: '1000px' }}></div>
+              )}
             </div>
           ))}
         </div>
-        <Modal isOpen={isModalOpen} onClose={handleModalClose} selectedStep={selectedStep} />
+        <Modal isOpen={isModalOpen} onClose={handleModalClose} selectedStep={selectedStep} modalData={modalData} linksData={linksData} />
       </div>
     </main>
   );
 };
 
 export default FrontendRoadmap;
-
-
-
-
-
-
-  {/* <h1>Steps from the Database</h1>
-        {steps.map((step) => (
-          <div key={step.roadmap_ID}>
-            <Button
-              left={0}
-              top={0}
-              label={step.title}
-              onClick={() => console.log(`${step.title} button clicked`)}
-              onModalOpen={setModalOpen}
-            />
-            <Modal isOpen={isModalOpen} onClose={setModalOpen} />
-          </div>
-        ))}
-      </div> */}
