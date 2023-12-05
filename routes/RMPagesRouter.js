@@ -1,11 +1,10 @@
-const Router = require('express');
+const express = require('express');
+const { getRoadmapPage, getAllRoadmapPages } = require('../controllers/RMPagesController');
 
-const router = new Router();
+const router = express.Router();
 
+router.get('/:page_ID', getRoadmapPage);
 
-router.post('/',)
-router.get('/',)
-
-
+router.get('/', getAllRoadmapPages);
 
 module.exports = router;
