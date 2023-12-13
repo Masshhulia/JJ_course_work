@@ -5,6 +5,8 @@ import QuestionText from '../components/QuestionText/QuestionText';
 import AnswerOptions from '../components/AnswerOptions/AnswerOptions';
 import { getQuestions } from '../http/questionsApi';
 import { getTests } from '../http/testsApi';
+import { $authHost } from "../http/index";
+
 
 const Quiz = () => {
   const [questions, setQuestions] = useState([]);
@@ -14,6 +16,8 @@ const Quiz = () => {
   const [progress, setProgress] = useState(0);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
+
+
 
   const moveToNextQuestion = () => {
     if (currentQuestionIndex < totalQuestions - 1) {
@@ -34,10 +38,42 @@ const Quiz = () => {
 
   const handleAnswerSelected = (index) => {
     const newSelectedAnswers = [...selectedAnswers];
-    newSelectedAnswers[currentQuestionIndex] = newSelectedAnswers[currentQuestionIndex] || [];
+    newSelectedAnswers[currentQuestionIndex] = [
+      ...newSelectedAnswers[currentQuestionIndex] || [] 
+    ];
     newSelectedAnswers[currentQuestionIndex][index] = !newSelectedAnswers[currentQuestionIndex][index];
     setSelectedAnswers(newSelectedAnswers);
   };
+
+  const submitAnswers = async () => {
+    try {
+      const formattedAnswers = selectedAnswers.map((answer, index) => {
+        const selectedOptions = answer
+          .map((isSelected, optionIndex) => isSelected ? { question_ID: index + 1, option_ID: optionIndex } : null)
+          .filter(Boolean);
+        return {
+          questionIndex: index + 1,
+          selectedOptions,
+          testId: test.length > 0 ? test[0].test_ID : null
+        };
+      });
+      
+      const jsonString = JSON.stringify({ answers: formattedAnswers });
+  
+      console.log('Submitting answers:', formattedAnswers);
+
+      const response = await $authHost.post('/api/questions/testresults', jsonString, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+  
+      console.log('Test results submitted successfully:', response.data);
+    } catch (error) {
+      console.error('Error submitting test results:', error.message);
+    }
+  };
+
 
   useEffect(() => {
     const fetchQuestionsData = async () => {
@@ -91,11 +127,14 @@ const Quiz = () => {
               onAnswerSelected={handleAnswerSelected}
               currentQuestionIndex={currentQuestionIndex}
               selectedAnswers={selectedAnswers}
+              setSelectedAnswers={setSelectedAnswers} 
             />
+
           </div>
           <div className="buttons__quiz">
             <QuizButton text="Back" textColor="#333" bgColor="#FFF" borderColor="#333" onClick={moveToPreviousQuestion} />
             {!isLastQuestion && <QuizButton text="Next" textColor="#333" bgColor="#FFF" borderColor="#333" onClick={moveToNextQuestion} />}
+            {isLastQuestion && <QuizButton text="Submit Answers" textColor="#FFF" bgColor="#1DC9A0" borderColor="#1DC9A0" onClick={submitAnswers} />}
           </div>
         </div>
       </section>
@@ -104,3 +143,4 @@ const Quiz = () => {
 };
 
 export default Quiz;
+
