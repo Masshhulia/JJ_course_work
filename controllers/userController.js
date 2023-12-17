@@ -40,8 +40,8 @@ class UserController {
     
 
     async registration(req, res, next) {
-        const { email, password, name, last_name, role } = req.body;
-        if (!email || !password || !name || !last_name) {
+        const { email, password, name, last_name, role, job, linked_in } = req.body;
+        if (!email || !password || !name || !last_name || !job || !linked_in) {
             return next(ApiError.badRequest('Некорректные данные пользователя'));
         }
     
@@ -51,7 +51,7 @@ class UserController {
         }
     
         const hashPassword = await bcrypt.hash(password, 5);
-        const user = await User.create({ email, role, password: hashPassword, name, last_name });
+        const user = await User.create({ email, role, password: hashPassword, name, last_name, job, linked_in });
         const token = generateJwt(user.id, user.email, user.role);
         return res.json({ token });
     
