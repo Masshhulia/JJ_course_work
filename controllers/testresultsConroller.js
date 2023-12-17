@@ -1,15 +1,33 @@
-class TestResultsController{
-    async registration(req, res){
+const { TestResults, User, Tests } = require('../models/models');
+const ApiError = require('../error/ApiError');
 
-    }
+class TestResultsController {
+  async getResults(req, res, next) {
+    try {
+      const userId = req.params.id;
+      const testId = req.query.testId;
 
-    async login(req, res){
-        
-    }
+      const results = await TestResults.findAll({
+        where: {
+          user_id: userId,
+          tests_ID: testId
+        },
+        include: [
+          { model: User },
+          { model: Tests }
+        ]
+      });
 
-    async check(req, res){
-        
+      if (!results) {
+        return next(ApiError.notFound('Test results not found'));
+      }
+
+      return res.json(results);
+    } catch (error) {
+      next(ApiError.internal('Internal Server Error'));
     }
+  }
 }
 
-module.exports = new TestResultsController()
+module.exports = new TestResultsController();
+
