@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getAccountInfo } from '../http/accountApi';
 
 const AccountPage = () => {
@@ -32,13 +33,14 @@ const AccountPage = () => {
                             <p className="job">{userData.job}</p>
                         </div>
                         <div className="menu_pages">
-                            <a href="#" className="page_item">RoadMaps</a>
+                            <Link to="/roadmaps" className="menu__list-link">Roadmaps</Link>
                             <div className="line-list acc"></div>
-                            <a href="#" className="page_item">Rating</a>
+                            <Link to="/urating" className="menu__list-link">Rating</Link>
                             <div className="line-list acc"></div>
-                            <a href="#" className="page_item">Calendar</a>
+                            <Link to="/testres" className="menu__list-link">Test results</Link>
                             <div className="line-list acc"></div>
-                            <a href="#" className="page_item">Tests</a>
+                            <Link to="/quizes" className="menu__list-link">Tests</Link>
+                            
                             <div className="line-list acc"></div>
                         </div>
                         <div className="white_container">
@@ -50,7 +52,7 @@ const AccountPage = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none">
                                     <path d="M18 5.5H3.83L7.41 1.91L6 0.5L0 6.5L6 12.5L7.41 11.08L3.83 7.5H18V5.5Z" fill="#333333"/>
                                 </svg>
-                                <a href="#" className="back-link">Back</a>
+                                <Link to="/main" className="menu__list-link">Back</Link>
                             </div>
                             <div className="info">
                                 <p className="personal-det">Personal details</p>
@@ -74,18 +76,9 @@ const AccountPage = () => {
                             </div>
 
                             <p className="statistics">Statistics</p>
-                            <div className="progress-circles">
-                                <img src="images/progress-bar-circle.svg" alt="" className="circle" />
-                                <img src="images/progress-bar-circle2.svg" alt="" className="circle" />
-                                <img src="images/progress-bar-circle3.svg" alt="" className="circle" />
-                            </div>
-                            <div className="progress-text-row">
-                                <p className="progress-text">Overall progress</p>
-                                <p className="progress-text">Achievements</p>
-                                <p className="progress-text">Roadmaps</p>
-                            </div>
+                            
                             <p className="days">Days on Juniors Journey: {userData.days}</p>
-                            <img src="images/progress-bar-line.svg" alt="" className="progress-bar-line" />
+                            
                         </div>
                     </div>
                 </main>
