@@ -30,7 +30,36 @@ class AccountController {
     } catch (error) {
       next(ApiError.internal('Internal Server Error'));
     }
+  };
+  async getAllUsers(req, res, next) {
+    try {
+      const users = await User.findAll();
+      return res.json(users);
+    } catch (error) {
+      next(ApiError.internal('Internal Server Error'));
+    }
   }
+
+
+  async updateAccountInfo(req, res, next) {
+    try {
+        const userId = req.user.id;
+        const { linkedin, job } = req.body;
+        const user = await User.findByPk(userId);
+
+        if (!user) {
+            return next(ApiError.notFound('User not found'));
+        }
+
+        user.linkedin = linkedin;
+        user.job = job;
+        await user.save();
+
+        return res.json({ linkedin, job });
+    } catch (error) {
+        next(ApiError.internal('Internal Server Error'));
+    }
+}
 }
 
 module.exports = new AccountController();
