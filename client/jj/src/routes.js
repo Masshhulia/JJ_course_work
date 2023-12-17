@@ -1,5 +1,5 @@
 import Account from './pages/Account.js';
-import {LOGIN_ROUTE,AUTORIZE_ROUTE,MAIN_ROUTE, ACCOUNT_ROUTE, ROADMAPS_ROUTE, BACKEND_ROUTE, FRONTEND_ROUTE, ADVICES_ROUTE, QUIZES_ROUTE, QUIZ_ROUTE} from "./utils/consts";
+import {LOGIN_ROUTE,AUTORIZE_ROUTE,MAIN_ROUTE, ACCOUNT_ROUTE, ROADMAPS_ROUTE, BACKEND_ROUTE, FRONTEND_ROUTE, ADVICES_ROUTE, QUIZES_ROUTE, QUIZ_ROUTE,TESTRESULTS_ROUTE, USERRATING_ROUTE} from "./utils/consts";
 import Advices from './pages/Advices';
 import Autorization from './pages/Autorization';
 import Backend_roadmap from './pages/Backend_roadmap';
@@ -8,6 +8,8 @@ import Quiz from './pages/Quiz';
 import Roadmaps_menu from './pages/Roadmaps_menu';
 import Main from './pages/Main';
 import Frontend_roadmap from './pages/Frontend_roadmap';
+import TestResultsPage from './pages/TestResultsPage'
+import UserRankingPage from './pages/UserRankingPage.js';
 
 export const authRoutes = [
     // {
@@ -18,11 +20,13 @@ export const authRoutes = [
         path: ACCOUNT_ROUTE,
         Component: Account
     },
+   
 ]
 
 
 
 export const publicRoutes = [
+    
     {
         path: ACCOUNT_ROUTE,
         Component: Account
@@ -62,5 +66,13 @@ export const publicRoutes = [
     {
         path: QUIZ_ROUTE,
         Component: Quiz
+    },
+    {
+        path:TESTRESULTS_ROUTE,
+        Component: TestResultsPage
+    },
+    {
+        path: USERRATING_ROUTE,
+        Component: UserRankingPage
     },
 ]
