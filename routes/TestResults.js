@@ -1,11 +1,9 @@
-const Router = require('express');
+const express = require('express');
+const router = express.Router();
+const { saveUserAnswers, calculateTestResult } = require('../middleware/testSessionMiddleware');
+const testResultsController = require('../controllers/testresultsConroller');
 
-const router = new Router();
-
-
-router.post('/',)
-router.get('/')
-
-
+router.post('/questions', saveUserAnswers, calculateTestResult);
+router.get('/results/:id', testResultsController.getResults);
 
 module.exports = router;
