@@ -1,5 +1,4 @@
 import { $authHost } from "./index";
-import { jwtDecode } from "jwt-decode";
 
 export const getAccountInfo = async () => {
     try {
@@ -9,3 +8,12 @@ export const getAccountInfo = async () => {
         throw new Error(error.response?.data?.message || 'Failed to get account info');
     }
 }
+export const getAllUsers = async () => {
+    try {
+        const { data } = await $authHost.get('api/account/rating');
+        return data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Failed to get all users');
+    }
+}
+
