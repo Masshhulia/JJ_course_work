@@ -6,6 +6,10 @@ import AnswerOptions from '../components/AnswerOptions/AnswerOptions';
 import { getQuestions } from '../http/questionsApi';
 import { getTests } from '../http/testsApi';
 import { $authHost } from "../http/index";
+import {fetchTestResults} from "../http/testResultsAPI"
+import { jwtDecode } from "jwt-decode";
+
+
 
 
 const Quiz = () => {
@@ -16,8 +20,35 @@ const Quiz = () => {
   const [progress, setProgress] = useState(0);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
+  const [showResultsModal, setShowResultsModal] = useState(false);
+  const [testResults, setTestResults] = useState(null);
 
+  const token = localStorage.getItem('token'); 
 
+  let decodedToken;
+
+  if (token) {
+    try {
+      decodedToken = jwtDecode(token);
+      console.log('Decoded token:', decodedToken);
+    } catch (e) {
+      console.error('Error decoding token:', e);
+    }
+  }
+
+  if (!decodedToken || !decodedToken.id) {
+    console.error('ID not found in decoded token');
+  } else {
+    console.log('ID found in decoded token:', decodedToken.id);
+  }
+
+  let userId;
+  if (decodedToken) {
+    userId = decodedToken.id;
+  }
+  
+  let testId = 1;
+  console.log(userId);
 
   const moveToNextQuestion = () => {
     if (currentQuestionIndex < totalQuestions - 1) {
@@ -57,22 +88,34 @@ const Quiz = () => {
           testId: test.length > 0 ? test[0].test_ID : null
         };
       });
-      
-      const jsonString = JSON.stringify({ answers: formattedAnswers });
-  
-      console.log('Submitting answers:', formattedAnswers);
 
+      const jsonString = JSON.stringify({ answers: formattedAnswers });
+
+      console.log('Submitting answers:', formattedAnswers);
+  
       const response = await $authHost.post('/api/questions/testresults', jsonString, {
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
       });
   
       console.log('Test results submitted successfully:', response.data);
+      
+      await handleTestCompletion();
     } catch (error) {
       console.error('Error submitting test results:', error.message);
+    } finally {
+      setShowResultsModal(true);
     }
   };
+  
+
+  const handleTestCompletion = async () => {
+    const results = await fetchTestResults(userId, testId);
+    setTestResults(results);
+    setShowResultsModal(true);
+  };
+  
 
 
   useEffect(() => {
@@ -100,6 +143,7 @@ const Quiz = () => {
   }, []); 
 
   const currentQuestion = questions[currentQuestionIndex];
+  
 
   return (
     <main className="main">
@@ -138,6 +182,43 @@ const Quiz = () => {
           </div>
         </div>
       </section>
+
+    {showResultsModal && (
+      <div style={{
+        display:'block' ,
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        width: '454px',
+        height: '372px',
+        transform: 'translate(-50%, -50%)',
+        padding: '20px',
+        background: '#fff',
+        boxShadow: '0px 4px 0px rgba(159, 106, 173, 0.25) inset',
+        borderRadius: '12px',
+        border: '1px #562D61 solid',
+        zIndex: 999,
+        textAlign: 'center', 
+      }}>
+    <div className="modal-content">
+      <h2 style={{color: '#1DC9A0'}}>Test completed!</h2>
+      {testResults && testResults.length > 0 ? (
+        <>
+          <p style={{fontSize: '20px'}}>Your result: {testResults[testResults.length - 1].score} %</p>
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+      <button onClick={() => setShowResultsModal(false)} style={{
+          position: 'absolute',
+          bottom: '10px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          cursor: 'pointer'
+        }}>Close</button>
+    </div>
+    )}
     </main>
   );
 };
