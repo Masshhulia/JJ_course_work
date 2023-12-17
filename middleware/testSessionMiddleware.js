@@ -35,7 +35,7 @@ const saveUserAnswers = async (req, res, next) => {
 
 const calculateTestResult = async (req, res, next) => {
   try {
-    const userId = req.userId;
+    const userId = req.user.id;
     const userAnswers = req.userAnswers;
 
     let correctAnswers = 0;
