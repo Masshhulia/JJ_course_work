@@ -29,9 +29,12 @@ const Header = () => {
           <Link to="/auth" className="log__in">
             <div className="button-text">Log In</div>
           </Link>
-          <button className="log__up" onClick={() => { document.location = '#create'; }}>
-            <div className="button-text">Log Up</div>
-          </button>
+          <Link to="/main" className="log__up">
+            <div className="button-text">Sign In</div>
+          </Link>
+          <Link to="/account" className="acc_h">
+          <img src="images/acc.svg" alt="" className="" />
+          </Link>
           </div>
         </div>
       </div>
