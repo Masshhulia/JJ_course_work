@@ -253,9 +253,19 @@ const FrontendRoadmap = () => {
           <span style={{ color: '#590070', fontSize: '40px', fontFamily: 'Didact Gothic', fontWeight: 400, wordWrap: 'break-word' }}>Front-end</span>
           <span style={{ color: 'black', fontSize: '40px', fontFamily: 'Didact Gothic', fontWeight: 400, wordWrap: 'break-word' }}> Developer</span>
         </div>
-        
+        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '391px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '571px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '751px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '920px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1100px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '2160px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1980px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1800px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1630px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1450px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1280px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
         <div style={{ height: '244.49px', left: '633px', top: '312.44px', position: 'absolute' }}>
-        
+          
           {steps.map((step, index) => (
             <div key={index}>
               <Button
@@ -268,14 +278,16 @@ const FrontendRoadmap = () => {
                 }}
                 onModalOpen={handleModalClose}
               />
-              {index < steps.length - 1 && (
-                <div style={{ width: '2px', height: '50px', transform: 'rotate(0deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted', top: '1000px' }}></div>
-              )}
+             
             </div>
+            
           ))}
+          
         </div>
         <Modal isOpen={isModalOpen} onClose={handleModalClose} selectedStep={selectedStep} modalData={modalData} linksData={linksData} />
       </div>
+      
+         
     </main>
   );
 };
