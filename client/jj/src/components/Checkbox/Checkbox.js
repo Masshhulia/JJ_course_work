@@ -10,7 +10,7 @@ const Checkbox = ({ id, isChecked = false, onChange }) => {
         onChange={() => onChange(id)}
         style={{ display: 'none' }}
       />
-      <div className="checkbox" style={{ backgroundColor: isChecked ? '#1DC9A0' : 'transparent' }}>
+      <div className="checkbox" style={{ backgroundColor: isChecked ? '#1DC9A0' : 'transparent',  borderRadius: '50%'  }}>
         {isChecked && (
           <div className="checkmark">
             <div></div>
