@@ -27,7 +27,16 @@ class TestsController {
         }
     }
 
-    // Дополнительные методы, если нужны
+    async createTest(req, res, next) {
+        try {
+            const { test_ID, title, Description } = req.body; 
+            const test = await Tests.create({ test_ID, title, Description });
+            return res.json(test);
+        } catch (error) {
+            console.error('Error creating test:', error);
+            next(ApiError.internal('Error creating test in the database'));
+        }
+    }
 }
 
 module.exports = new TestsController();
