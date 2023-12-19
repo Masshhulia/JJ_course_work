@@ -19,7 +19,11 @@ const AccountPage = () => {
     }, []);
 
     if (!userData) {
-        return <div>Loading...</div>;
+        return <div>You are not authorized! Would you like to log in? 
+            <Link to="/auth" className="log__in">
+        <div className="button-text">Log In</div>
+      </Link>
+      </div>;
     }
 
     return (
