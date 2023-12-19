@@ -94,7 +94,7 @@ html {
   }
   
   .buttons__container {
-    max-width: 263px;
+    max-width: 370px;
     gap: 5px;
     display: flex;
     align-items: center;
