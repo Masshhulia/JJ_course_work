@@ -20,4 +20,13 @@ export default class UserStore {
     get user() {
         return this._user
     }
+
+    logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
+        localStorage.removeItem('user');
+        this._isAuth = false;
+        this._user = {};
+        localStorage.clear();
+      }
 }
