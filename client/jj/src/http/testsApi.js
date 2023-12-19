@@ -1,5 +1,5 @@
 // testsApi.js
-import { $host } from './index';
+import { $host, $authHost } from './index';
 
 export const getTests = async () => {
   const response = await $host.get('/api/tests/tests');
@@ -8,5 +8,16 @@ export const getTests = async () => {
 
 export const getTestById = async (testId) => {
   const response = await $host.get(`/api/tests/tests/${testId}`);
+  localStorage.setItem('testId', testId); 
+  
   return response.data;
+};
+
+export const createTest = async (testData) => {
+  try {
+      const response = await $authHost.post('/api/tests/tests', testData);
+      return response.data;
+  } catch (error) {
+      throw new Error(error.response?.data?.message || 'Failed to create test');
+  }
 };
