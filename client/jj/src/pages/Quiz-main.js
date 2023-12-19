@@ -1,4 +1,4 @@
-
+// Quiz_main.js
 import React, { useState, useEffect } from 'react';
 import QuizLink from '../components/QuizLink/QuizLink';
 import Header from '../components/Header/Header';
@@ -32,7 +32,7 @@ const Quiz_main = () => {
             <h2 className="quiz__text2">Quizzes to help you test and improve your knowledge and skill up</h2>
           </div>
           {tests.map((test) => (
-            <QuizLink key={test.test_ID} to={`/quiz`} text={test.title} description={test.Description} />
+            <QuizLink key={test.test_ID}  to={`/quiz`} testId={test.test_ID} text={test.title} description={test.Description} />
           ))}
         </div>
       </section>
@@ -41,5 +41,3 @@ const Quiz_main = () => {
 };
 
 export default Quiz_main;
-
-
