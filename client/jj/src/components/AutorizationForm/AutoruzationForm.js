@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { login } from '../../http/userApi';
 import { useNavigate } from 'react-router-dom';
+import { Context } from '../../index';
 
 const AuthorizationForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {user} = useContext(Context)
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -16,11 +18,13 @@ const AuthorizationForm = () => {
     try {
       const userData = await login(email, password);
       console.log('Пользователь вошел:', userData);
+      user.setIsAuth(true);
+      localStorage.setItem('email', userData.email);
       navigate('/account');
-      // По желанию, вы можете перенаправить на другую страницу или выполнить другие действия после успешной авторизации
+     
     } catch (error) {
       console.error('Ошибка авторизации:', error.message);
-      // Добавьте вывод ошибки на экран или другие действия при неудачной авторизации
+      
     }
   };
 
