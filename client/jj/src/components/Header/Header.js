@@ -1,7 +1,26 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import { Context } from '../../index';
+import { jwtDecode } from "jwt-decode";
 
-const Header = () => {
+  const Header = observer(() =>{
+
+    const {user} = useContext(Context)
+    const token = localStorage.getItem('token');
+  
+    let decodedToken;
+    let userRole;
+    if (typeof token === 'string') {
+      decodedToken = jwtDecode(token);
+      userRole = decodedToken.role;
+    } else {
+      console.error('Token is not a string:', token);
+    }
+  
+    const handleLogout = () => {
+      user.logout();
+    }
   return (
     <header className="header header-main">
       <div className="container">
@@ -24,8 +43,14 @@ const Header = () => {
                 <Link to="/quizes" className="menu__list-link">Quiz</Link>
               </li>
             </ul>
+            
           </nav>
           <div className="buttons__container">
+          {user.isAuth && userRole === 'ADMIN' && (
+         <Link to="/admin" className="acc_h">
+           <img src="images/AD.svg" alt="" className="" />
+         </Link>
+          )}
           <Link to="/auth" className="log__in">
             <div className="button-text">Log In</div>
           </Link>
@@ -35,11 +60,17 @@ const Header = () => {
           <Link to="/account" className="acc_h">
           <img src="images/acc.svg" alt="" className="" />
           </Link>
+          {user.isAuth && (
+          <Link to="/main" className="log__up" onClick={handleLogout}>
+            <div className="button-text">Logout</div>
+          </Link>
+          )}
+          
           </div>
         </div>
       </div>
     </header>
   );
-};
+});
 
 export default Header;
