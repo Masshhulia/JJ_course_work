@@ -1,5 +1,5 @@
 import Account from './pages/Account.js';
-import {LOGIN_ROUTE,AUTORIZE_ROUTE,MAIN_ROUTE, ACCOUNT_ROUTE, ROADMAPS_ROUTE, BACKEND_ROUTE, FRONTEND_ROUTE, ADVICES_ROUTE, QUIZES_ROUTE, QUIZ_ROUTE,TESTRESULTS_ROUTE, USERRATING_ROUTE} from "./utils/consts";
+import {ADMIN_ROUTE,LOGIN_ROUTE,AUTORIZE_ROUTE,MAIN_ROUTE, ACCOUNT_ROUTE, ROADMAPS_ROUTE, BACKEND_ROUTE, FRONTEND_ROUTE, ADVICES_ROUTE, QUIZES_ROUTE, QUIZ_ROUTE,TESTRESULTS_ROUTE, USERRATING_ROUTE} from "./utils/consts";
 import Advices from './pages/Advices';
 import Autorization from './pages/Autorization';
 import Backend_roadmap from './pages/Backend_roadmap';
@@ -10,12 +10,13 @@ import Main from './pages/Main';
 import Frontend_roadmap from './pages/Frontend_roadmap';
 import TestResultsPage from './pages/TestResultsPage'
 import UserRankingPage from './pages/UserRankingPage.js';
+import Admin from './pages/Admin.js';
 
 export const authRoutes = [
-    // {
-    //     path: ADMIN_ROUTE,
-    //     Component: Admin
-    // },
+    {
+        path: ADMIN_ROUTE,
+        Component: Admin
+    },
     {
         path: ACCOUNT_ROUTE,
         Component: Account
@@ -74,5 +75,9 @@ export const publicRoutes = [
     {
         path: USERRATING_ROUTE,
         Component: UserRankingPage
+    },
+    {
+        path: ADMIN_ROUTE,
+        Component: Admin
     },
 ]
