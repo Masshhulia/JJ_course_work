@@ -25,3 +25,21 @@ export const getLinksForPageFromDatabase = async (pageID) => {
     throw new Error(error.response?.data?.message || 'Failed to get links for the specified page from the database');
   }
 };
+
+export const createLink = async (linkData) => {
+  try {
+      const response = await $authHost.post('api/rmlinks/links', linkData);
+      return response.data;
+  } catch (error) {
+      throw new Error(error.response?.data?.message || 'Failed to create link');
+  }
+};
+
+export const updateLink = async (linkId, linkData) => {
+  try {
+      const response = await $authHost.put(`api/rmlinks/links/${linkId}`, linkData);
+      return response.data;
+  } catch (error) {
+      throw new Error(error.response?.data?.message || 'Failed to update link');
+  }
+};
