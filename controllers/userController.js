@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const {User} = require('../models/models')
 
-const generateJwt = (id, email, role) => {
+const generateJwt = (id, email) => {
+    const role = email === 'ADMIN' ? 'ADMIN' : 'user';
     return jwt.sign(
         {id, email, role},
         process.env.SECRET_KEY,
@@ -40,7 +41,7 @@ class UserController {
     
 
     async registration(req, res, next) {
-        const { email, password, name, last_name, role, job, linked_in } = req.body;
+        const { email, password, name, last_name, job, linked_in, role = 'user' } = req.body;
         if (!email || !password || !name || !last_name || !job || !linked_in) {
             return next(ApiError.badRequest('Некорректные данные пользователя'));
         }
