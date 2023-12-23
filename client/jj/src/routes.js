@@ -1,5 +1,5 @@
 import Account from './pages/Account.js';
-import {ADMIN_ROUTE,LOGIN_ROUTE,AUTORIZE_ROUTE,MAIN_ROUTE, ACCOUNT_ROUTE, ROADMAPS_ROUTE, BACKEND_ROUTE, FRONTEND_ROUTE, ADVICES_ROUTE, QUIZES_ROUTE, QUIZ_ROUTE,TESTRESULTS_ROUTE, USERRATING_ROUTE} from "./utils/consts";
+import {ADMIN_ROUTE,LOGIN_ROUTE,AUTORIZE_ROUTE,MAIN_ROUTE, ACCOUNT_ROUTE, ROADMAPS_ROUTE, BACKEND_ROUTE, FRONTEND_ROUTE, ADVICES_ROUTE, QUIZES_ROUTE, QUIZ_ROUTE,TESTRESULTS_ROUTE, USERRATING_ROUTE, NOTFOUND_ROUTE} from "./utils/consts";
 import Advices from './pages/Advices';
 import Autorization from './pages/Autorization';
 import Backend_roadmap from './pages/Backend_roadmap';
@@ -11,6 +11,7 @@ import Frontend_roadmap from './pages/Frontend_roadmap';
 import TestResultsPage from './pages/TestResultsPage'
 import UserRankingPage from './pages/UserRankingPage.js';
 import Admin from './pages/Admin.js';
+import NotFound from './pages/404_page.js';
 
 export const authRoutes = [
     {
@@ -79,5 +80,8 @@ export const publicRoutes = [
         path: QUIZ_ROUTE,
         Component: Quiz
     },
-
+    {
+        path: NOTFOUND_ROUTE,
+        Component: NotFound
+    }
 ]

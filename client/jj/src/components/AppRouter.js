@@ -20,6 +20,7 @@ const AppRouter = () => {
         ))}
             
             <Route path="/" element={<Navigate to={MAIN_ROUTE} />} />
+            <Route path="*" element={<Navigate to="/not-found" />} />
         </Routes>
     );
 };
