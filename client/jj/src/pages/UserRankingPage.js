@@ -59,7 +59,7 @@ const UserRankingPage = () => {
               </div>
               <div className="results-progress">
                     <h1 style={{ fontSize: '2em', color: '#454676'}}>User rating by days of use Juniors Journey</h1>
-                    {sortedUsers.map((user, index) => (
+                    {sortedUsers.slice(0, 5).map((user, index) => (
                         <div key={user.id} style={{ margin: '20px 0', padding: '10px', backgroundColor: '#f8f9fa', borderRadius: '5px' }}>
                         <h2 style={{ fontSize: '1.5em' ,fontWeight: 'normal'}}>{index + 1}. {user.name}</h2>
                         </div>
