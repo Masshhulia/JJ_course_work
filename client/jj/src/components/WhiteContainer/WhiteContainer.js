@@ -5,7 +5,7 @@ import Info from '../InfoBox/Info';
 const WhiteContainer = () => {
   return (
     <div className="white_container">
-      {/* ... Код для белого контейнера ... */}
+      
       <BackButton />
       <Info />
     </div>

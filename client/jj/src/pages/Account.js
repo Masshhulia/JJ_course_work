@@ -27,7 +27,7 @@ const AccountPage = () => {
     }
 
     return (
-        <body className="body-acc">
+        <div className="body-acc">
             <div className="wrapper">
                 <main className="main">
                     <div className="acc-container">
@@ -78,7 +78,7 @@ const AccountPage = () => {
                                     <p className="LinkedIn-own">{userData.linkedin}</p>
                                 </div>
                             </div>
-
+    
                             <p className="statistics">Statistics</p>
                             
                             <p className="days">Days on Juniors Journey: {userData.days}</p>
@@ -87,8 +87,9 @@ const AccountPage = () => {
                     </div>
                 </main>
             </div>
-        </body>
+        </div>
     );
+    
 };
 
 export default AccountPage;

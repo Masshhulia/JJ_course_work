@@ -1,7 +1,7 @@
 // Button.js
 import React from 'react';
 
-const Button = ({ left, top, label, onClick, onModalOpen }) => (
+const Button = ({ left, top, label, onClick }) => (
   <div
     style={{
       width: '174.57px',
@@ -30,7 +30,8 @@ const Button = ({ left, top, label, onClick, onModalOpen }) => (
       }}
       onClick={() => {
         onClick();
-        onModalOpen(); // Make sure this function is responsible for closing the modal
+        // Можете оставить эту строку, если вам она нужна
+        // onModalOpen();
       }}
     >
       {label}

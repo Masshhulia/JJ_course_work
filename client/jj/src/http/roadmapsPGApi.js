@@ -1,8 +1,8 @@
-import { $authHost } from "./index";
+import { $host } from "./index";
 
 export const getRoadmapPageFromDatabase = async (roadmap_ID) => {
   try {
-    const { data } = await $authHost.get(`api/rmpages/${roadmap_ID}`);
+    const { data } = await $host.get(`api/rmpages/${roadmap_ID}`);
     return data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'Failed to get roadmap page from the database');
@@ -11,7 +11,7 @@ export const getRoadmapPageFromDatabase = async (roadmap_ID) => {
 
 export const getAllRoadmapPagesFromDatabase = async () => {
   try {
-    const { data } = await $authHost.get('api/rmpages');
+    const { data } = await $host.get('api/rmpages');
     return data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'Failed to get roadmap pages from the database');

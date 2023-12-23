@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import QuizLink from '../components/QuizLink/QuizLink';
 import Header from '../components/Header/Header';
 
