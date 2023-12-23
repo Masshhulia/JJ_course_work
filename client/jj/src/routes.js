@@ -21,17 +21,28 @@ export const authRoutes = [
         path: ACCOUNT_ROUTE,
         Component: Account
     },
-   
+    {
+        path:TESTRESULTS_ROUTE,
+        Component: TestResultsPage
+    },
+    {
+        path: USERRATING_ROUTE,
+        Component: UserRankingPage
+    },
+    {
+        path: ACCOUNT_ROUTE,
+        Component: Account
+    },
 ]
 
 
 
 export const publicRoutes = [
-    
     {
         path: ACCOUNT_ROUTE,
         Component: Account
     },
+    
     {
         path: MAIN_ROUTE,
         Component: Main
@@ -68,16 +79,5 @@ export const publicRoutes = [
         path: QUIZ_ROUTE,
         Component: Quiz
     },
-    {
-        path:TESTRESULTS_ROUTE,
-        Component: TestResultsPage
-    },
-    {
-        path: USERRATING_ROUTE,
-        Component: UserRankingPage
-    },
-    {
-        path: ADMIN_ROUTE,
-        Component: Admin
-    },
+
 ]

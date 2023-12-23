@@ -1,188 +1,166 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Didact+Gothic&family=Poppins&display=swap');
 
-
 html {
     box-sizing: border-box;
-  }
+    width: 100%;
+}
   
-  *, *::after, *::before {
+*, *::after, *::before {
     box-sizing: inherit;
     margin: 0;
     padding: 0;
-  }
+}
   
-  ul {
+ul {
     list-style-type: none;
-  }
+}
   
-  a {
+a {
     text-decoration: none;
     color: inherit;
-  }
+}
   
-  body {
+body {
     font-family: 'Didact Gothic', sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
     overflow-x: hidden;
-  }
-  .input_field {
+    width: 100%;
+}
+.input_field {
     font-family: 'Didact Gothic', sans-serif;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 400;
     padding-left: 10%;
-  }
-  button {
+}
+button {
     border: none;
     font-family: Didact Gothic;
     text-align: center;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-  }
+}
   
-  html, body {
+html, body {
     height: 100%;
-  }
+}
   
-  .wrapper {
+.wrapper {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-  }
+}
   
-  .container {
-    max-width: 1440px;
-    height: 90px;
+.container {
+    max-width: 90vw;
+    height: 10vh;
     margin: 0 auto;
-    padding: 0 31px;
-  }
+    padding: 0 2vw;
+}
   
-  .header {
+.header {
     background-color: rgba(139, 139, 224, 0.31);
-  }
+}
   
-  .header-main {
+.header-main {
     position: absolute;
     z-index: 5;
     left: 0;
     right: 0;
-  }
+}
   
-  .header_inner {
-    padding-top: 13px;
+.header_inner {
+    padding-top: 1vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1377px;
-  }
+    max-width: 90vw;
+}
   
-  .menu__list {
+.menu__list {
     display: flex;
-    gap: 61px;
-  }
+    gap: 5vw;
+}
   
-  .menu__list-link {
+.menu__list-link {
     color: #000;
-    font-size: 20px; /* Добавлено */
+    font-size: 1.25rem;
     margin-left: 10px;
-  }
+}
   
-  .menu__list-link:hover {
+.menu__list-link:hover {
     color: #463a76;
-  }
+}
   
-  .buttons__container {
-    max-width: 370px;
-    gap: 5px;
+.buttons__container {
+    max-width: 25vw;
+    gap: 1vw;
     display: flex;
     align-items: center;
-  }
+}
   
-  .log__in,
-  .log__up {
-    width: 129px;
-    height: 45px;
-    border-radius: 45px;
-    font-size: 24px;
-    font-weight: 400;
+.log__in,
+.log__up {
+    width: 30vw;
+    height: 5vh;
+    border-radius: 5vh;
+    font-size: 1.2vw;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     transition: background 0.3s, color 0.3s, border 0.3s;
-  }
+}
   
-  .button-text {
+.button-text {
     width: 100%;
     text-align: center;
-  }
+}
   
-  .log__in {
+.log__in {
     background: #7760BF;
     color: #FFF;
-  }
+}
   
-  .log__in:hover {
+.log__in:hover {
     background: #ffffff;
     color: #463a76;
-  }
+}
   
-  .log__in:active {
+.log__in:active {
     background: #3b2d57;
-  }
+}
   
-  .log__up {
+.log__up {
     border: 1px solid #8B8BE0;
     color: #755CBB;
-  }
+}
   
-  .log__up:hover {
+.log__up:hover {
     background-color: #333368;
     color: #ffffff;
-  }
+}
   
-  .log__up:active {
+.log__up:active {
     border-color: #5454a1;
     color: #463a76;
-  }
+}
   
-
 .menu__list-link {
     text-decoration: none;
     color: #000;
-  }
+}
   
-  .menu__list-link:hover {
+.menu__list-link:hover {
     color: #463a76;
-  }
+}
   
-
-/* .footer__container{
-    background-color: rgba(139, 139, 224, 0.31);
-    max-width: 1440px;
-    height: 90px;
-}
-.footer__menu {
-    max-width: 659px;
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer__menu-list {
-    gap: 137px;
-    display: flex;
-    list-style: none; 
-    padding: 0; 
-} */
-
 .main{
     flex-grow: 1;
 }
-
+  
 .top{
     color: #000;
     font-weight: 400;
@@ -192,196 +170,208 @@ html {
     left: 0;
     right: 0;
 }
+  
 .title{
-    padding-top: 296px;
-    font-size: 64px;
-    max-width: 1063px;
+    padding-top: 18.5rem;
+    font-size: 3.2rem;
+    max-width: 66.4375rem;
     font-style: normal;
     font-weight: 400;
 }
+  
 .subtitle{
-    padding-top: 26px;
-    max-width: 744px;
+    padding-top: 1.3rem;
+    max-width: 46.5rem;
     font-style: normal;
     font-weight: 400;
     opacity: 0.69;
 }
+  
 .start__link{
     display: inline-block;
     text-align: center;
-    margin-top: 74px;
-    font-size: 24px;
+    margin-top: 3.7rem;
+    font-size: 1.5rem;
     color: #FFF;
-    max-width: 296px;
-    height: 60px;
-    border-radius: 45px;
+    max-width: 18.5rem;
+    height: 3rem;
+    border-radius: 2.25rem;
     background: linear-gradient(90deg, #755CBB 0%, #590070 100%);
-    line-height: 60px;
+    line-height: 3rem;
     width: 100%;
     text-decoration: none;
 }
+  
 .back__image{
     height: 100vh;
-    margin-top: -99px;
+    margin-top: -6.1875rem;
 }
-
+  
 .create__container{
     position: relative;
-    max-width: 1344px;
+    max-width: 84rem;
     width: 100%;
-    height: 806px;
+    height: 50.375rem;
     flex-shrink: 0;
-    border-radius: 19px;
+    border-radius: 1.1875rem;
     background: rgba(139, 139, 224, 0.31);
     backdrop-filter: blur(25px);
     margin-left: 4.5%;
 }
+  
 .create__title{
     color: #000;
-    font-size: 48px;
+    font-size: 2.4rem;
     font-style: normal;
     font-weight: 400;
-    padding-top: 49px;
-    padding-left: 105px;
+    padding-top: 2.45rem;
+    padding-left: 6.5625rem;
 }
+  
 .input__container{
-    width: 450px;
-    height: 410px;
+    width: 22.5rem;
+    height: 25.625rem;
     flex-shrink: 0;
-    padding-top: 30px;
-    padding-left: 66px;
+    padding-top: 1.5rem;
+    padding-left: 4.125rem;
 }
+  
 input{
     border: none;
 }
+  
 .input_field{
-    margin-bottom: 30px;
-    width: 450px;
-    height: 60px;
+    margin-bottom: 1.875rem;
+    width: 22.5rem;
+    height: 3.75rem;
     flex-shrink: 0;
-    border-radius: 11px;
+    border-radius: 0.6875rem;
     background: #FFF;
     backdrop-filter: blur(25px);
 }
+
+
 .people__img{
     position: absolute;
-    top: 250px;
-    left: 552px; /* Подстроить под ваши нужды */
+    top: 15.625rem;
+    left: 34.5rem;
     z-index: -1;
 }
 .submit__button {
-    margin-top: 160px;
-    margin-left: 214px; 
-    width: 155px;
-    height: 60px;
+    margin-top: 10rem;
+    margin-left: 10%; 
+    width: 9.6875rem;
+    height: 3.75rem;
     flex-shrink: 0;
-    border-radius: 47px;
+    border-radius: 2.9375rem;
     background: #755CBB;
     backdrop-filter: blur(25px);
     display: inline-block;
-    padding: 15px 38px;
-    font-size: 24px;
+    padding: 0.9375rem 2.375rem;
+    font-size: 1.5rem;
     color: #FFF;
 }
 .input_field::placeholder{
-    padding-left: 42px;
-    font-size: 24px;
+    padding-left: 2%;
+    font-size: 1.5rem;
     opacity: 0.5;
 }
 .autorize{
-    padding-top: 100px;
-    padding-left: 32px;
+    padding-top: 6.25rem;
+    padding-left: 2rem;
 }
 .autorize__container{
-    max-width: 1344px;
-    height: 806px;
+    max-width: 84rem;
+    height: 50.375rem;
     flex-shrink: 0;
-    border-radius: 19px;
+    border-radius: 1.1875rem;
     background: rgba(139, 139, 224, 0.31);
     backdrop-filter: blur(25px);
     flex-direction: column; 
     align-items: center; 
 }
 .autorize_text{
-    padding-top: 138px;
-    max-width: 1344px;
+    padding-top: 8.625rem;
+    max-width: 84rem;
     text-align: center;
     justify-content: center;
-    font-size: 48px;
+    font-size: 3rem;
 }
 .enter__data{
     font-style: normal;
     font-weight: 400;
-    font-size: 48px;
+    font-size: 3rem;
 }
 .form__container{
-    max-width: 1344px;
-    display: flex; /* Добавлено */
-    flex-direction: column; /* Добавлено */
-    align-items: center; /* Добавлено */
+    max-width: 84rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .form{
-    margin-top: 67px;
-    width: 450px;
-    height: 190px;
+    margin-top: 4.1875rem;
+    width: 28.125rem;
+    height: 11.875rem;
     flex-shrink: 0;
-    gap: 30px;
-    display: flex; /* Добавлено */
-    flex-direction: column; /* Добавлено */
-    align-items: center; /* Добавлено */
+    gap: 1.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .submit__button2 {
-    margin-top: 43px;
-    width: 155px;
-    height: 60px;
+    margin-top: 2.6875rem;
+    width: 9.6875rem;
+    height: 3.75rem;
     flex-shrink: 0;
-    border-radius: 47px;
+    border-radius: 2.9375rem;
     background: #755CBB;
     backdrop-filter: blur(25px);
     display: inline-block;
-    padding: 15px 38px;
-    font-size: 24px;
+    padding: 0.9375rem 2.375rem;
+    font-size: 1.5rem;
     color: #FFF;
 }
 
 .container1 {
-    width: 450px;
-    height: 119px;
+    width: 28.125rem;
+    height: 7.4375rem;
     flex-shrink: 0;
-    border-radius: 11px;
+    border-radius: 0.6875rem;
     background: #FFF;
     backdrop-filter: blur(25px);
-    margin-left: 105px;
-    margin-top: 51px;
+    margin-left: 6.5625rem;
+    margin-top: 3.1875rem;
 }
+
 .progress-bar {
     width: 100%;
-    height: 10px;
+    height: 0.625rem;
     background-color: #f1f1f1;
-  }
+}
   
-  .progress-bar-fill {
+.progress-bar-fill {
     height: 100%;
     background-color: #4caf50;
-    transition: width 0.5s ease-in-out; /* добавим плавный переход */
-  }
+    transition: width 0.5s ease-in-out;
+}
   
 .title__quiz{
-    padding-top: 49px;
-    padding-left: 105px;
+    padding-top: 3.0625rem;
+    padding-left: 6.5625rem;
 }
 .subtitle__quiz{
-    padding-top: 11px;
-    padding-left: 105px;
+    padding-top: 0.6875rem;
+    padding-left: 6.5625rem;
 }
 .quiz__text{
-    font-size: 48px;
+    font-size: 3rem;
     font-style: normal;
     font-weight: 400;
 }
 .quiz__text2{
     color: #403657;
-    font-size: 32px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 400;
 }
@@ -390,88 +380,88 @@ input{
     color: #403657;
 }
 .text_in_button{
-    height: 45px;
-    font-size: 32px;
+    height: 2.8125rem;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 400;
     opacity: 0.5;
-    margin-left: 32px;
-    padding-top: 24px;
+    margin-left: 2rem;
+    padding-top: 1.5rem;
 }
 .text_in_button2{
-    height: 26px;
-    max-width: 352px;
-    font-size: 16px;
+    height: 1.625rem;
+    max-width: 22rem;
+    font-size: 1rem;
     font-style: normal;
     opacity: 0.5;
-    margin-top: 30px;
-    margin-left: 32px;
+    margin-top: 1.875rem;
+    margin-left: 2rem;
 }
 .text__quiz{
-    margin-top: 10px;
+    margin-top: 0.625rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 .upper_text{
-    max-width: 400px;
+    max-width: 25rem;
 }
 .upper_text2{
-    max-width: 928px;
+    max-width: 58rem;
 }
 .title_quiz{
-    font-size: 40px;
+    font-size: 2.5rem;
     font-style: normal;
     font-weight: 400;
 }
 .subtitle_quiz{
     text-align: center;
-    font-size: 32px;
+    font-size: 2rem;
     font-style: normal;
     color: #403657;
     font-weight: 400;
 }
 .lane-Progress_container{
-    max-width: 1088px;
-    height: 85px;
+    max-width: 68rem;
+    height: 5.3125rem;
     flex-shrink: 0;
-    border-radius: 11px;
+    border-radius: 0.6875rem;
     background: #FFF;
-    margin-top: 11px;
-    margin-left: 128px;
+    margin-top: 0.6875rem;
+    margin-left: 8rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .lane-Progress_text{
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
     opacity: 0.5;
-    margin-left: 59px;
+    margin-left: 3.6875rem;
 }
 .w3-light-grey {
-    max-width: 896px;
+    max-width: 56rem;
     width: 100%;
-    height: 10px; /* Исправлено для соответствия высоты с элементом myBar */
+    height: 0.625rem;
     flex-shrink: 0;
-    border-radius: 45px;
+    border-radius: 2.8125rem;
     background: rgba(119, 96, 191, 0.60);
 }
 
 .w3-container.w3-green {
-    border-radius: 45px;
+    border-radius: 2.8125rem;
     background: rgba(28, 22, 44, 0.6);
 }
 .questions__container{
-    max-width: 1088px;
-    height: 522px;
+    max-width: 68rem;
+    height: 32.625rem;
     flex-shrink: 0;
-    border-radius: 11px;
+    border-radius: 0.6875rem;
     background: #FFF;
-    margin-top: 11px;
-    margin-left: 128px;
+    margin-top: 0.6875rem;
+    margin-left: 8rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -479,47 +469,46 @@ input{
 
 .question__text{
     text-align: center;
-    max-width: 700px;
-    margin-top: 71px;
-    font-size: 48px;
+    max-width: 43.75rem;
+    margin-top: 4.4375rem;
+    font-size: 3rem;
     font-style: normal;
     font-weight: 400;
 }
 .reveal__button{
-    margin-top: 117px;
-    width: 443px;
-    height: 46px;
+    margin-top: 7.3125rem;
+    width: 27.6875rem;
+    height: 2.875rem;
     flex-shrink: 0;
-    border-radius: 45px;
+    border-radius: 2.8125rem;
     background: #7760BF;
     color: #FFF;
     text-align: center;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
 }
 .buttons__quiz {
     display: flex;
     flex-direction: row;
-    gap: 423px;
-    max-width: 1088px;
-    height: 85px;
+    gap: 26.4375rem;
+    max-width: 68rem;
+    height: 5.3125rem;
     flex-shrink: 0;
-    margin-top: 11px;
-    margin-left: 128px;
-    
+    margin-top: 0.6875rem;
+    margin-left: 8rem;
 }
 
 .already-button,
 .didnt-button,
 .skip-button {
-    width: 334px;
-    height: 85px;
+    width: 20.875rem;
+    height: 5.3125rem;
     flex-shrink: 0;
-    border-radius: 11px;
+    border-radius: 0.6875rem;
     background: #FFF;
     backdrop-filter: blur(25px);
-    font-size: 24px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -533,20 +522,21 @@ input{
     color: #F00;
 }
 .autorize__container-q{
-    max-width: 1344px;
-    height: 874px;
+    max-width: 84rem;
+    height: 54.625rem;
     flex-shrink: 0;
-    border-radius: 19px;
+    border-radius: 1.1875rem;
     background: rgba(139, 139, 224, 0.31);
     backdrop-filter: blur(25px);
     flex-direction: column; 
     align-items: center; 
 }
+
 .roadmaps{
     padding-top: 100px;
 }
 .line{
-    width: 1440.042px;
+    width: 100%;
     height: 1px;
     background: #000;
     margin-top: 28px;
@@ -585,34 +575,35 @@ input{
 .advices-list{
     display: flex;
     flex-direction: column;
-    gap: 13px;
-    margin-left: 241px;
-    margin-top: 69px;
+    gap: 0.8125rem;
+    margin-left: 15.0625rem;
+    margin-top: 4.3125rem;
 }
 .advices-link {
     text-decoration: none;
     color: #000;
     font-family: Didact Gothic;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     opacity: 0.5;
-    transition: color 0.3s; /* добавленный переход цвета */
+    transition: color 0.3s;
 }
 
 .advices-link:hover {
-    color: #727079; /* цвет при наведении */
+    color: #727079;
 }
 .line-list{
-    width: 936.009px;
-    height: 1px;
+    width: 70%;
+    height: 0.0625rem;
     background: rgba(0, 0, 0, 0.40);
 }
 .perf-text{
-    margin-top: 15px;
-    margin-left: 518px;
+    margin-top: 0.9375rem;
+    margin-left: 32.375rem;
 }
+
 .frontend-perfomance{
     font-size: 40px;
     font-style: normal;
@@ -1012,5 +1003,22 @@ ol {
     transform: translate(-50%, -50%);
    }
    
-  
+   @media screen and (max-width: 1300px) {
+    .people__img {
+        display: none;
+    }
+    .logo{
+        display: none;
+    }
+    .already-button,
+    .didnt-button,
+    .skip-button {
+        width: 15rem;
+        height: 4rem;
+        font-size: 1.2rem;
+    }
+    .buttons__quiz {
+        gap: 5rem;
+    }
+}
   
