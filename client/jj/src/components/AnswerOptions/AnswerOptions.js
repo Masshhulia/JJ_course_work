@@ -6,7 +6,6 @@ const AnswerOptions = ({ answerOptions, onAnswerSelected, currentQuestionIndex, 
   const [selectedOptions, setSelectedOptions] = useState(Array(answerOptions?.length || 0).fill(false));
 
   useEffect(() => {
-    // Update selected options when the current question changes
     setSelectedOptions(selectedAnswers[currentQuestionIndex] || []);
   }, [currentQuestionIndex, selectedAnswers, answerOptions]);
 
@@ -16,7 +15,6 @@ const AnswerOptions = ({ answerOptions, onAnswerSelected, currentQuestionIndex, 
       ...(newSelectedAnswers[currentQuestionIndex] || [])
     ];
     
-    // Если вариант ответа уже выбран, удаляем его из массива
     const existingAnswerIndex = newSelectedAnswers[currentQuestionIndex].findIndex(
       (answer) => answer.option_ID === option.option_ID
     );
@@ -24,7 +22,6 @@ const AnswerOptions = ({ answerOptions, onAnswerSelected, currentQuestionIndex, 
     if (existingAnswerIndex !== -1) {
       newSelectedAnswers[currentQuestionIndex].splice(existingAnswerIndex, 1);
     } else {
-      // Иначе добавляем новый объект ответа в массив
       newSelectedAnswers[currentQuestionIndex].push({
         question_ID: currentQuestionIndex,
         option_ID: option.option_ID,
@@ -34,21 +31,15 @@ const AnswerOptions = ({ answerOptions, onAnswerSelected, currentQuestionIndex, 
     setSelectedAnswers(newSelectedAnswers);
     onAnswerSelected(option.option_ID);
   };
-  
-  
-  
-  
-  
-
   return (
     <div className="answer-options__container">
       {answerOptions?.map((option, index) => (
         <div key={index} className="answer-option">
           <Checkbox
-  id={option.option_ID}
-  isChecked={selectedOptions[option.option_ID]}
-  onChange={() => handleCheckboxChange(option)}
-/>
+            id={option.option_ID}
+            isChecked={selectedOptions[option.option_ID]}
+            onChange={() => handleCheckboxChange(option)}
+          />
           <div className="answer-text">{option.option_text}</div>
         </div>
       ))}

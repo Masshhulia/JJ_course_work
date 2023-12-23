@@ -6,7 +6,6 @@ import { jwtDecode } from "jwt-decode";
 
   const Header = observer(() =>{
 
-    const {user} = useContext(Context)
     const token = localStorage.getItem('token');
   
     let decodedToken;
@@ -14,13 +13,17 @@ import { jwtDecode } from "jwt-decode";
     if (typeof token === 'string') {
       decodedToken = jwtDecode(token);
       userRole = decodedToken.role;
-    } else {
-      console.error('Token is not a string:', token);
-    }
+    } 
+    //   console.error('Token is not a string:', token);
+    // }
+    
   
-    const handleLogout = () => {
-      user.logout();
-    }
+    const {user} = useContext(Context);
+
+  const handleLogout = () => {
+  user.logout();
+};
+const userAuth = localStorage.getItem('auth');
   return (
     <header className="header header-main">
       <div className="container">
@@ -46,7 +49,7 @@ import { jwtDecode } from "jwt-decode";
             
           </nav>
           <div className="buttons__container">
-          {user.isAuth && userRole === 'ADMIN' && (
+          {userAuth === 'true' && userRole === 'ADMIN' && (
          <Link to="/admin" className="acc_h">
            <img src="images/AD.svg" alt="" className="" />
          </Link>
@@ -54,13 +57,13 @@ import { jwtDecode } from "jwt-decode";
           <Link to="/auth" className="log__in">
             <div className="button-text">Log In</div>
           </Link>
-          <Link to="/main" className="log__up">
+          <Link to="/#create" className="log__up">
             <div className="button-text">Sign In</div>
           </Link>
           <Link to="/account" className="acc_h">
           <img src="images/acc.svg" alt="" className="" />
           </Link>
-          {user.isAuth && (
+          {userAuth === 'true' && (
           <Link to="/main" className="log__up" onClick={handleLogout}>
             <div className="button-text">Logout</div>
           </Link>

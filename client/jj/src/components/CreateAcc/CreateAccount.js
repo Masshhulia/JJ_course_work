@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { registration} from '../../http/userApi';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ const CreateAccount = () => {
   const [password, setPassword] = useState('');
   const [job, setJob] = useState('');
   const [linked_in, setLinkedin] = useState('');
+  const [error, setError] = useState(null);
 
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
@@ -24,7 +25,8 @@ const CreateAccount = () => {
       console.log('Пользователь зарегистрирован:', userData);
       navigate('/auth');
     } catch (error) {
-      console.error('Ошибка регистрации:', error.message);
+      console.error('Ошибка регистрации:', error.response.data.message);
+      setError(error.response.data.message);
     }
   };
 
@@ -43,6 +45,7 @@ const CreateAccount = () => {
         <button className="submit__button" onClick={handleRegistration}>
          Submit
         </button>
+        {error && <div className="error" style={{ color: 'red' }}>{error}</div>}
         <img src="images/create_people.svg" alt="" className="people__img" />
       </div>
     </section>

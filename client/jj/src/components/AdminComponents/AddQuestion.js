@@ -4,6 +4,7 @@ import { createQuestion } from '../../http/questionsApi';
 const AddQuestion = () => {
     const [questionData, setQuestionData] = useState({ question_text: '' });
     const [isVisible, setIsVisible] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleInputChange = (event) => {
         setQuestionData({ ...questionData, [event.target.name]: event.target.value });
@@ -16,6 +17,7 @@ const AddQuestion = () => {
             console.log('Новый вопрос успешно создан:', newQuestion);
         } catch (error) {
             console.error('Ошибка при создании вопроса:', error);
+            setError(error.response.data.message)
         }
     };
 
@@ -51,6 +53,7 @@ const AddQuestion = () => {
                     <button type="submit">Добавить вопрос</button>
                 </form>
             )}
+            {error && <div className="error" style={{ color: 'red' }}>{error}</div>}
         </div>
     );
 };

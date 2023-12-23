@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { login } from '../../http/userApi';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; 
 import { Context } from '../../index';
 
 const AuthorizationForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
   const {user} = useContext(Context)
 
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -20,11 +21,12 @@ const AuthorizationForm = () => {
       console.log('Пользователь вошел:', userData);
       user.setIsAuth(true);
       localStorage.setItem('email', userData.email);
+      localStorage.setItem('auth', true);
       navigate('/account');
      
     } catch (error) {
-      console.error('Ошибка авторизации:', error.message);
-      
+      console.error('Ошибка авторизации:', error.response.data.message);
+      setError(error.response.data.message)
     }
   };
 
@@ -42,6 +44,10 @@ const AuthorizationForm = () => {
               Submit
             </button>
           </form>
+          {error && <div className="error" style={{ color: 'red' }}>{error}</div>}
+          <div className="register_link"> 
+            Don't have an account? <Link to="/#create">Register</Link>
+          </div>
         </div>
       </div>
     </section>
@@ -49,4 +55,3 @@ const AuthorizationForm = () => {
 };
 
 export default AuthorizationForm;
-

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createTest } from '../../http/testsApi'; // Импортируйте ваш метод API
+import { createTest } from '../../http/testsApi'; 
 
 const AddTest = () => {
     const [testData, setTestData] = useState({ test_ID: '', title: '', Description: '' });
@@ -56,6 +56,7 @@ const AddTest = () => {
                     <button type="submit">Создать тест</button>
                 </form>
             )}
+            
         </div>
     );
 };

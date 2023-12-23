@@ -1,21 +1,11 @@
 // Modal.js
 import React, { useEffect } from 'react';
-import { getLinkByIdFromDatabase } from '../../http/roamapsLinksApi';
 
 const Modal = ({ isOpen, onClose, selectedStep, modalData, linksData }) => {
   console.log('Modal component is rendered!');
   console.log('modalData in Modal component:', modalData);
   console.log('linksData in Modal component:', linksData);
 
-  const findLinksById = async (id) => {
-    try {
-      const linkData = await getLinkByIdFromDatabase(id);
-      return linkData;
-    } catch (error) {
-      console.error('Error getting link by ID:', error.message);
-      return null;
-    }
-  };
 
   useEffect(() => {
     console.log('Modal component is re-rendered!');
