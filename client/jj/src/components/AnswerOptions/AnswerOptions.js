@@ -10,27 +10,32 @@ const AnswerOptions = ({ answerOptions, onAnswerSelected, currentQuestionIndex, 
   }, [currentQuestionIndex, selectedAnswers, answerOptions]);
 
   const handleCheckboxChange = (option) => {
-    const newSelectedAnswers = [...selectedAnswers];
-    newSelectedAnswers[currentQuestionIndex] = [
-      ...(newSelectedAnswers[currentQuestionIndex] || [])
-    ];
-    
-    const existingAnswerIndex = newSelectedAnswers[currentQuestionIndex].findIndex(
-      (answer) => answer.option_ID === option.option_ID
-    );
-    
-    if (existingAnswerIndex !== -1) {
-      newSelectedAnswers[currentQuestionIndex].splice(existingAnswerIndex, 1);
-    } else {
-      newSelectedAnswers[currentQuestionIndex].push({
-        question_ID: currentQuestionIndex,
-        option_ID: option.option_ID,
-      });
+    try {
+      const newSelectedAnswers = [...selectedAnswers];
+      newSelectedAnswers[currentQuestionIndex] = [
+        ...(newSelectedAnswers[currentQuestionIndex] || [])
+      ];
+      
+      const existingAnswerIndex = newSelectedAnswers[currentQuestionIndex].findIndex(
+        (answer) => answer.option_ID === option.option_ID
+      );
+      
+      if (existingAnswerIndex !== -1) {
+        newSelectedAnswers[currentQuestionIndex].splice(existingAnswerIndex, 1);
+      } else {
+        newSelectedAnswers[currentQuestionIndex].push({
+          question_ID: currentQuestionIndex,
+          option_ID: option.option_ID,
+        });
+      }
+      
+      setSelectedAnswers(newSelectedAnswers);
+      onAnswerSelected(option.option_ID);
+    } catch (error) {
+      console.error("Пользователь попытался выбрать второй вариант ответа: ", error);
     }
-    
-    setSelectedAnswers(newSelectedAnswers);
-    onAnswerSelected(option.option_ID);
   };
+  
   return (
     <div className="answer-options__container">
       {answerOptions?.map((option, index) => (
