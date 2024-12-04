@@ -9,6 +9,7 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - jj_db_data:/var/lib/postgresql/data
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
     networks:
       jj-network:
         ipv4_address: 172.28.5.2
