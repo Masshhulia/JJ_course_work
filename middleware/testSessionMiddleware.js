@@ -35,35 +35,38 @@ const saveUserAnswers = async (req, res, next) => {
 
 const calculateTestResult = async (req, res, next) => {
   try {
-    const userId = req.user.id;
-    const userAnswers = req.userAnswers;
+      const userId = req.user.id;
+      const userAnswers = req.userAnswers;
 
-    let correctAnswers = 0;
+      let correctAnswers = 0;
 
-    for (let i = 0; i < userAnswers.length; i++) {
-      const isCorrect = await isAnswerCorrect(userAnswers[i]);
-      if (isCorrect) {
-        correctAnswers++;
+      for (let i = 0; i < userAnswers.length; i++) {
+          const isCorrect = await isAnswerCorrect(userAnswers[i]);
+          console.log(`Answer for question ${userAnswers[i].questionId} is ${isCorrect ? 'correct' : 'incorrect'}`);
+          if (isCorrect) {
+              correctAnswers++;
+          }
       }
-    }
 
-    let result = (correctAnswers/userAnswers.length)*100;
-    result = Math.round(result);
+      let result = (correctAnswers / userAnswers.length) * 100;
+      result = Math.round(result);
 
-    console.log('Correct answers:', correctAnswers);
+      console.log('Correct answers:', correctAnswers);
+      console.log('Total answers:', userAnswers.length);
+      console.log('Final score:', result);
 
-    const testResult = await TestResults.create({
-      user_id: userId,
-      tests_ID: userAnswers[0].testId, 
-      score: result,
-    });
+      // Сохранение результата теста
+      await TestResults.create({
+          user_id: userId,
+          tests_ID: userAnswers[0].testId, 
+          score: result,
+      });
 
-    req.userAnswers = [];
-
-    next();
+      req.userAnswers = []; // Очищаем массив userAnswers
+      next();
   } catch (error) {
-    console.error('Error in calculateTestResult middleware:', error);
-    res.status(500).send('Error saving test results');
+      console.error('Error in calculateTestResult middleware:', error);
+      res.status(500).send('Error saving test results');
   }
 };
 

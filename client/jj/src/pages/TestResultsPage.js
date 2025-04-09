@@ -7,65 +7,91 @@ import { fetchTestResults } from "../http/testResultsAPI";
 import { jwtDecode } from "jwt-decode";
 
 const TestResultsPage = () => {
-    const [userData, setUserData] = useState(null);
-    const [testResults, setTestResults] = useState(null);
-    const [testName, setTestName] = useState("");
-    const token = localStorage.getItem('token');
-  
-    const testId = localStorage.getItem('selectedTestId');
-  
-    useEffect(() => {
-      let decodedToken;
-    
-      if (token) {
-        try {
-          decodedToken = jwtDecode(token);
-          console.log('Decoded token:', decodedToken);
-        } catch (e) {
-          console.error('Error decoding token:', e);
-        }
-      }
-    
-      if (!decodedToken || !decodedToken.id) {
-        console.error('ID not found in decoded token');
-        return; 
-      }
-    
-      const userId = decodedToken.id;
-    
-      const fetchData = async () => {
-        try {
-          const accountInfo = await getAccountInfo();
-          setUserData(accountInfo);
-    
-          const results = await fetchTestResults(userId, testId);
-    
-          if (results && results.length > 0) {
-            setTestResults([results[results.length - 1]]);
+  const [userData, setUserData] = useState(null);
+  const [testResults, setTestResults] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem('token');
 
-            if (testId) {
-              const testInfo = await getTestById(testId);
-              setTestName(testInfo.title);
-            } else {
-              console.error('Test ID is undefined.');
-            }
-          } else {
-            console.warn('No test results available for the user.');
+  useEffect(() => {
+    let decodedToken;
+
+    if (token) {
+      try {
+        decodedToken = jwtDecode(token);
+      } catch (e) {
+        console.error('Error decoding token:', e);
+      }
+    }
+
+    if (!decodedToken || !decodedToken.id) {
+      console.error('User ID not found in token');
+      return;
+    }
+
+    const userId = decodedToken.id;
+
+    const fetchData = async () => {
+      try {
+        const accountInfo = await getAccountInfo();
+        setUserData(accountInfo);
+    
+        const results = await fetchTestResults(userId);
+    
+        if (!results || results.length === 0) {
+          console.warn('No test results available');
+          return;
+        }
+
+        // Группировка по tests_ID и выбор результата с наибольшим score
+        const groupedResults = results.reduce((acc, result) => {
+          const testId = result.tests_ID;
+          const current = acc[testId];
+
+          if (!current || result.score > current.score) {
+            acc[testId] = result; // Сохраняем результат с наибольшим score
           }
-        } catch (error) {
-          console.error('Error fetching data:', error.message);
-        }
-      };
     
-      fetchData();
-    }, [testId, token]);
+          return acc;
+        }, {});
+    
+        const latestResults = Object.values(groupedResults);
+    
+        // Подгружаем названия тестов
+        const resultsWithTitles = await Promise.all(
+          latestResults.map(async (res) => {
+            try {
+              const testInfo = await getTestById(res.tests_ID);
+              return { ...res, testTitle: testInfo.title };
+            } catch (e) {
+              console.warn(`Error loading test title for test ID ${res.tests_ID}`);
+              return { ...res, testTitle: "Unknown Test" };
+            }
+          })
+        );
+    
+        setTestResults(resultsWithTitles);
+      } catch (error) {
+        console.error('Error fetching test results:', error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!userData || !testResults) {
-    return <div>You haven't taken any tests yet!
+    fetchData();
+  }, [token]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!userData || testResults.length === 0) {
+    return (
+      <div>You haven't taken any tests yet!
         <div>
-        <Link to="/account" className="menu__list-link">Back</Link>
+          <Link to="/account" className="menu__list-link">Back</Link>
         </div>
-    </div>;
+      </div>
+    );
   }
 
   return (
@@ -91,7 +117,6 @@ const TestResultsPage = () => {
             <div className="white_container">
               <svg xmlns="http://www.w3.org/2000/svg" width="1065" height="788" viewBox="0 0 1065 788" fill="none">
                 <path d="M0 30C0 13.4314 13.4315 0 30 0H1035C1051.57 0 1065 13.4315 1065 30V758C1065 774.569 1051.57 788 1035 788H30C13.4315 788 0 774.569 0 758V30Z" fill="white" />
-                <path d="M0 30C0 13.4314 13.4315 0 30 0H1035C1051.57 0 1065 13.4315 1065 30V758C1065 774.569 1051.57 788 1035 788H30C13.4315 788 0 774.569 0 758V30Z" fill="white" />
               </svg>
               <div className="back-button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none">
@@ -99,11 +124,15 @@ const TestResultsPage = () => {
                 </svg>
                 <Link to="/account" className="menu__list-link">Back</Link>
               </div>
+
               <div className="results-progress">
-              <h2 className="test-name">{testName}</h2>
-              <TestResults testResults={testResults}></TestResults>
+                {testResults.map((result, index) => (
+                  <div key={index} className="test-result-block">
+                    <h3>{result.testTitle}</h3>
+                    <TestResults testResults={[result]} />
+                  </div>
+                ))}
               </div>
-              
             </div>
           </div>
         </main>

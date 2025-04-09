@@ -152,6 +152,21 @@ const User = sequelize.define('User', {
       allowNull: false
     }
   });
+
+  const Tests = sequelize.define('Tests', {
+    test_ID: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    title: {
+      type: DataTypes.STRING(500),
+      allowNull: false
+    },
+    Description: {
+      type: DataTypes.TEXT
+    }
+  });
   
   const Questions = sequelize.define('Questions', {
     question_ID: {
@@ -162,6 +177,14 @@ const User = sequelize.define('User', {
     question_text: {
       type: DataTypes.TEXT,
       allowNull: false
+    },
+    test_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Tests, // Указываем на Tests
+        key: 'test_ID' // Ссылаемся на test_ID
+    }
     }
   });
   
@@ -187,20 +210,7 @@ const User = sequelize.define('User', {
     }
   });
   
-  const Tests = sequelize.define('Tests', {
-    test_ID: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    title: {
-      type: DataTypes.STRING(500),
-      allowNull: false
-    },
-    Description: {
-      type: DataTypes.TEXT
-    }
-  });
+ 
   
   const TestResults = sequelize.define('TestResults', {
     result_ID: {
@@ -250,8 +260,11 @@ Roadmaps.hasMany(RoadmapsPages, { foreignKey: 'roadmap_ID' });
 RoadmapsLinks.belongsTo(RoadmapsPages, { foreignKey: 'pages_ID' });
 RoadmapsPages.hasMany(RoadmapsLinks, { foreignKey: 'pages_ID' });
 
+Tests.hasMany(Questions, { foreignKey: 'test_id' });
 Options.belongsTo(Questions, { foreignKey: 'questions_ID' });
 Questions.hasMany(Options, { foreignKey: 'questions_ID' });
+
+Questions.belongsTo(Tests, { foreignKey: 'test_id' });
 
 TestResults.belongsTo(User, { foreignKey: 'user_id' });
 TestResults.belongsTo(Tests, { foreignKey: 'tests_ID' });

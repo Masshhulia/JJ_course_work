@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import QuizButton from '../components/QuizButton/QuizButton';
 import Header from '../components/Header/Header';
 import QuestionText from '../components/QuestionText/QuestionText';
 import AnswerOptions from '../components/AnswerOptions/AnswerOptions';
 import { getQuestions } from '../http/questionsApi';
-import { getTests } from '../http/testsApi';
+import { getTestById } from '../http/testsApi';
 import { $authHost } from "../http/index";
 import {fetchTestResults} from "../http/testResultsAPI"
 import { jwtDecode } from "jwt-decode";
@@ -16,7 +17,8 @@ const Quiz = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
-  const [test, setTests] = useState([]);
+  const [testId, setTestId] = useState(null);
+  const [test, setTest] = useState(null);
   const [progress, setProgress] = useState(0);
   const [isLastQuestion, setIsLastQuestion] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
@@ -24,6 +26,7 @@ const Quiz = () => {
   const [testResults, setTestResults] = useState(null);
 
   const token = localStorage.getItem('token'); 
+
 
   let decodedToken;
 
@@ -47,7 +50,7 @@ const Quiz = () => {
     userId = decodedToken.id;
   }
   
-  let testId = 1;
+  
   console.log(userId);
 
   const moveToNextQuestion = () => {
@@ -78,36 +81,41 @@ const Quiz = () => {
 
   const submitAnswers = async () => {
     try {
-      const formattedAnswers = selectedAnswers.map((answer, index) => {
-        const selectedOptions = answer
-          .map((isSelected, optionIndex) => isSelected ? { question_ID: index + 1, option_ID: optionIndex } : null)
-          .filter(Boolean);
-        return {
-          questionIndex: index + 1,
-          selectedOptions,
-          testId: test.length > 0 ? test[0].test_ID : null
-        };
-      });
+        const formattedAnswers = selectedAnswers.map((answer, index) => {
+            const question = questions[index]; // Получаем вопрос по индексу
 
-      const jsonString = JSON.stringify({ answers: formattedAnswers });
+            const selectedOptions = answer
+                .map((isSelected, optionIndex) => 
+                    isSelected ? { question_ID: question.question_ID, option_ID: optionIndex } : null
+                )
+                .filter(Boolean);
 
-      console.log('Submitting answers:', formattedAnswers);
-  
-      const response = await $authHost.post('/api/questions/testresults', jsonString, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      console.log('Test results submitted successfully:', response.data);
-      
-      await handleTestCompletion();
+            return {
+                questionIndex: index + 1,
+                selectedOptions,
+                testId: test ? test.test_ID : null // Убедитесь, что test — это объект
+            };
+        });
+
+        const jsonString = JSON.stringify({ answers: formattedAnswers });
+
+        console.log('Submitting answers:', jsonString); // Логируем окончательный JSON
+
+        const response = await $authHost.post('/api/questions/testresults', jsonString, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        console.log('Test results submitted successfully:', response.data);
+
+        await handleTestCompletion();
     } catch (error) {
-      console.error('Error submitting test results:', error.message);
+        console.error('Error submitting test results:', error.message);
     } finally {
-      setShowResultsModal(true);
+        setShowResultsModal(true);
     }
-  };
+};
   
 
   const handleTestCompletion = async () => {
@@ -119,29 +127,32 @@ const Quiz = () => {
 
 
   useEffect(() => {
-    const fetchQuestionsData = async () => {
-      try {
-        const fetchedQuestions = await getQuestions();
-        setQuestions(fetchedQuestions);
-        setTotalQuestions(fetchedQuestions.length);
-      } catch (error) {
-        console.error('Error fetching questions:', error.message);
-      }
-    };
+    const storedTestId = localStorage.getItem('selectedTestId');
+    if (storedTestId) {
+      setTestId(storedTestId);
+      fetchQuestionsData(storedTestId);
+      fetchTestData(storedTestId); // Передаем ID теста для получения конкретного теста
+    }
+  }, []);
 
-    const fetchTestsData = async () => {
-      try {
-        const fetchedTests = await getTests();
-        setTests(fetchedTests);
-      } catch (error) {
-        console.error('Error fetching tests:', error.message);
-      }
-    };
+  const fetchQuestionsData = async (id) => {
+    try {
+      const fetchedQuestions = await getQuestions(id);
+      setQuestions(fetchedQuestions);
+      setTotalQuestions(fetchedQuestions.length);
+    } catch (error) {
+      console.error('Error fetching questions:', error.message);
+    }
+  };
 
-    fetchQuestionsData();
-    fetchTestsData();
-  }, []); 
-
+  const fetchTestData = async (id) => {
+    try {
+      const fetchedTest = await getTestById(id); // Получаем тест по ID
+      setTest(fetchedTest); // Устанавливаем тест
+    } catch (error) {
+      console.error('Error fetching test data:', error.message);
+    }
+  };
   const currentQuestion = questions[currentQuestionIndex];
   
 
@@ -151,11 +162,11 @@ const Quiz = () => {
       <section className="autorize">
         <div className="autorize__container-q">
           <div className="text__quiz">
-            <div className="upper_text">
-              <h1 className="title_quiz">{test.length > 0 ? test[0].title : 'No Title'}</h1>
+          <div className="upper_text">
+              <h1 className="title_quiz">{test ? test.title : 'No Title'}</h1>
             </div>
             <div className="upper_text2">
-              <h2 className="subtitle_quiz">{test.length > 0 ? test[0].Description : 'Test, rate and improve your React knowledge with these questions.'}</h2>
+              <h2 className="subtitle_quiz">{test ? test.Description : 'Test description not available.'}</h2>
             </div>
           </div>
           <div className="lane-Progress_container">

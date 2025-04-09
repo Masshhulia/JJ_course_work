@@ -9,8 +9,7 @@ class TestResultsController {
 
       const results = await TestResults.findAll({
         where: {
-          user_id: userId,
-          tests_ID: testId
+          user_id: userId
         },
         include: [
           { model: User },

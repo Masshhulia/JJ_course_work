@@ -48,6 +48,31 @@ class QuizController {
         }
     }
     
+    async getQuestionsByTestId(req, res, next) {
+        try {
+            const testId = parseInt(req.params.testId, 10); // Получаем testId из параметров
+    
+            // Проверяем, является ли testId допустимым числом
+            if (isNaN(testId)) {
+                return next(ApiError.badRequest('Invalid Test ID'));
+            }
+    
+            const questions = await Questions.findAll({
+                where: { test_id: testId }, // Используем корректное имя поля
+                include: [{ model: Options, as: 'Options' }] // Включаем связанные опции
+            });
+    
+            if (questions.length === 0) { // Проверяем, пуст ли массив
+                return next(ApiError.notFound('Questions not found'));
+            }
+    
+            return res.json(questions);
+        } catch (error) {
+            console.error('Error fetching questions:', error);
+            next(ApiError.internal('Internal Server Error'));
+        }
+    }
+  
 
 };
 

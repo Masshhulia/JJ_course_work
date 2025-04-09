@@ -7,9 +7,8 @@ export const getTests = async () => {
 };
 
 export const getTestById = async (testId) => {
-  const response = await $host.get(`/api/tests/tests/${testId}`);
+  const response = await $authHost.get(`/api/tests/tests/${testId}`); // Исправлено
   localStorage.setItem('testId', testId); 
-  
   return response.data;
 };
 
