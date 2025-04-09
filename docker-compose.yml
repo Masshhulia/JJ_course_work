@@ -20,13 +20,13 @@ services:
     build:
       context: .
     environment:
-      PORT: 8080
-      DB_NAME: jjdb
-      DB_USER: postgres
-      DB_PASSWORD: password
-      DB_HOST: db
-      DB_PORT: 5432
-      SECRET_KEY: 7788
+      PORT: ${PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      SECRET_KEY: ${SECRET_KEY}
     networks:
       jj-network:
         ipv4_address: 172.28.5.3

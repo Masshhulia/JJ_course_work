@@ -55,7 +55,8 @@ CREATE TABLE RoadmapsLinks (
 
 CREATE TABLE Questions (
     question_ID SERIAL PRIMARY KEY,
-    question_text TEXT NOT NULL
+    question_text TEXT NOT NULL,
+    test_id INT REFERENCES Tests(test_ID)
 );
 
 CREATE TABLE Options (
