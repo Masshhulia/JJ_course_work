@@ -542,15 +542,15 @@ input{
     margin-top: 28px;
     margin-left: 0;
 }
-.container_roadmap{
-    width: 450px;
+.container_roadmap {
+    width: 100%; /* Ширина кнопки занимает 100% контейнера */
+    max-width: 400px; /* Максимальная ширина кнопки */
     height: 119px;
-    flex-shrink: 0;
     border-radius: 11px;
     background: rgba(139, 139, 224, 0.31);
     backdrop-filter: blur(25px);
-    margin-left: 105px;
-    margin-top: 51px;
+    margin-bottom: 110px; /* Увеличенный отступ между кнопками */
+    box-sizing: border-box; /* Включает padding и border в общую ширину и высоту */
 }
 .text_in_button-r{
     font-size: 32px;
@@ -567,10 +567,11 @@ input{
     opacity: 0.5;
     margin-left: 44px;
 }
-.roadmaps__buttons{
+.roadmaps__buttons {
     display: flex;
-    flex-direction: row;
-    gap: 42px;
+    flex-direction: column; /* Расположение кнопок в столбик */
+    align-items: flex-start; /* Выравнивание кнопок по левому краю */
+    padding: 60px; /* Отступы от краев контейнера */
 }
 .advices-list{
     display: flex;

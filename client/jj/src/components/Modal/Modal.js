@@ -1,18 +1,8 @@
 // Modal.js
 import React, { useEffect } from 'react';
 
-const Modal = ({ isOpen, onClose, selectedStep, modalData, linksData }) => {
-  console.log('Modal component is rendered!');
-  console.log('modalData in Modal component:', modalData);
-  console.log('linksData in Modal component:', linksData);
-
-
+const Modal = ({ isOpen, onClose, selectedStep, modalData }) => {
   useEffect(() => {
-    console.log('Modal component is re-rendered!');
-    console.log('modalData in useEffect:', modalData);
-    console.log('linksData in useEffect:', linksData);
-    console.log('modalData in useEffect:', modalData);
-    console.log('linksData in useEffect:', linksData);
     if (modalData) {
       console.log('modalData in useEffect:', modalData);
     }
@@ -40,20 +30,18 @@ const Modal = ({ isOpen, onClose, selectedStep, modalData, linksData }) => {
       </p>
       <p>{modalData ? modalData.description : ''}</p>
 
-      {linksData && linksData.length > 0 && modalData && ( 
-  <div>
-      {linksData
-        .filter((link) => link.pages_ID === modalData.page_ID) 
-        .map((filteredLink) => (
-          <div key={filteredLink.link_ID}>
-            <a href={filteredLink.url} target="_blank" rel="noopener noreferrer">
-              {filteredLink.link_title}
-            </a>
-          </div>
-        ))}
-    </div>
-  )}
-      <button onClick={() => onClose()}>Close</button>
+      {modalData && modalData.links && modalData.links.length > 0 && (
+        <div>
+          {modalData.links.map((filteredLink, index) => (
+            <div key={index}>
+              <a href={filteredLink.url} target="_blank" rel="noopener noreferrer">
+                {filteredLink.link_title}
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
+      <button onClick={onClose}>Close</button>
     </div>
   );
 };

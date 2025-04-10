@@ -46,7 +46,24 @@ const User = sequelize.define('User', {
       type: DataTypes.DATE
     }
   });
-  
+
+  const RoadmapsNames = sequelize.define('RoadmapsNames', {
+    RoadmapName_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    RoadmapName_name: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    RoadmapName_description: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    }},
+   {timestamps: false
+  });
+
   const Roadmaps = sequelize.define('Roadmaps', {
     roadmap_ID: {
       type: DataTypes.INTEGER,
@@ -56,9 +73,18 @@ const User = sequelize.define('User', {
     title: {
       type: DataTypes.STRING(255),
       allowNull: false
+    },
+    RmName_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: RoadmapsNames,
+        key: 'RoadmapName_id'
+      }
     }
   });
+
   
+
   const CompletedRoadmaps = sequelize.define('CompletedRoadmaps', {
     user_id: {
       type: DataTypes.INTEGER,
@@ -127,6 +153,13 @@ const User = sequelize.define('User', {
     creation_date: {
       type: DataTypes.DATE,
       defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+    },
+    RmName_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: RoadmapsNames,
+        key: 'RoadmapName_id'
+      }
     }
   });
   
@@ -257,6 +290,12 @@ Achievements.belongsToMany(User, { through: UserAchievements, foreignKey: 'achie
 RoadmapsPages.belongsTo(Roadmaps, { foreignKey: 'roadmap_ID' });
 Roadmaps.hasMany(RoadmapsPages, { foreignKey: 'roadmap_ID' });
 
+Roadmaps.belongsTo(RoadmapsNames, {foreignKey: 'RmName_id'});
+RoadmapsNames.hasMany(Roadmaps,{foreignKey:  'RmName_id'});
+
+RoadmapsPages.belongsTo(RoadmapsNames, {foreignKey: 'RmName_id'});
+RoadmapsNames.hasMany(RoadmapsPages,{foreignKey:  'RmName_id'});
+
 RoadmapsLinks.belongsTo(RoadmapsPages, { foreignKey: 'pages_ID' });
 RoadmapsPages.hasMany(RoadmapsLinks, { foreignKey: 'pages_ID' });
 
@@ -278,6 +317,7 @@ module.exports = {
     CompletedRoadmaps,
     Achievements,
     UserAchievements,
+    RoadmapsNames,
     RoadmapsPages,
     RoadmapsLinks,
     Questions,

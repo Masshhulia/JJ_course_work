@@ -1,13 +1,13 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const QuizLink = ({ to, text, description, testId }) => {
+const QuizLink = ({ to, text, description, testId, roadmapId }) => {
   const handleQuizLinkClick = () => {
-    console.log('QuizLink Clicked', testId);
-    localStorage.setItem('selectedTestId', testId);
-    const storedTestId = localStorage.getItem('selectedTestId');
-  console.log('Stored TestId:', storedTestId);
+    console.log('QuizLink Clicked', roadmapId, testId);
+    localStorage.setItem('selectedRoadmapId', roadmapId); // Сохраняем ID дорожной карты
+    localStorage.setItem('selectedTestId', testId); // Сохраняем ID теста
+    console.log('Stored RoadmapId:', localStorage.getItem('selectedRoadmapId'));
+    console.log('Stored TestId:', localStorage.getItem('selectedTestId'));
   };
 
   return (
@@ -20,6 +20,4 @@ const QuizLink = ({ to, text, description, testId }) => {
   );
 };
 
-
 export default QuizLink;
-

@@ -174,68 +174,167 @@
 
 // FrontendRoadmap.js
 // FrontendRoadmap.js
+// import React, { useState, useEffect } from 'react';
+// import Header from '../components/Header/Header';
+// import Button from '../components/RoadmapButton/RoadmapButton';
+// import Modal from '../components/Modal/Modal';
+// import { getStepsFromDatabase } from '../http/roadmapStepsAPI';
+// import { getRoadmapPageFromDatabase } from '../http/roadmapsPGApi';
+// import { getLinksForPageFromDatabase } from '../http/roamapsLinksApi';
+// import { getAllLinksFromDatabase } from '../http/roamapsLinksApi';
+
+// const FrontendRoadmap = () => {
+//   const [selectedStep, setSelectedStep] = useState(null);
+//   const [steps, setSteps] = useState([]);
+//   const [isModalOpen, setModalOpen] = useState(false);
+//   const [modalData, setModalData] = useState(null);
+//   const [linksData, setLinksData] = useState([]);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const stepsFromDB = await getStepsFromDatabase();
+//         setSteps(stepsFromDB);
+  
+//         const linksFromDB = await getAllLinksFromDatabase(); 
+//         setLinksData(linksFromDB);
+  
+//         if (selectedStep) {
+//           const pageData = await getRoadmapPageFromDatabase(selectedStep.roadmap_ID);
+//           console.log('Page data before setModalData:', pageData);
+//           setModalData(pageData);
+//           setModalOpen(true);
+//         }
+//       } catch (error) {
+//         console.error('Error fetching data:', error.message);
+//       }
+//     };
+
+//     fetchData();
+//   }, [selectedStep]);
+
+//   const handleButtonClick = async (step) => {
+//     console.log('Handling button click with step:', step);
+//     console.log('Step data:', step);
+  
+//     setSelectedStep(step);
+  
+//     try {
+//       if (step.roadmap_ID !== undefined) {
+//         const linksForPage = await getLinksForPageFromDatabase(step.roadmap_ID);
+  
+//         if (linksForPage.length > 0) {
+       
+//           const filteredLinks = linksForPage.filter(link => link.pages_ID === step.page_ID);
+//           setModalData({ ...step, links: filteredLinks });
+//           setModalOpen(true);
+//         } else {
+//           console.error('No links found for the selected step.');
+//         }
+//       } else {
+//         console.error('roadmap_ID is undefined or null.');
+//       }
+//     } catch (error) {
+//       console.error('Error fetching data for the modal:', error.message);
+//     }
+//   };
+
+//   const handleModalClose = () => {
+//     setSelectedStep(null);
+//     setModalData(null);
+//     setModalOpen(false);
+//   };
+
+//   return (
+//     <main className="main">
+//       <Header />
+//       <div style={{ width: '1440px', height: '1817px', position: 'relative', background: 'white' }}>
+//         <div style={{ width: '358px', height: '59px', left: '541px', top: '147px', position: 'absolute', textAlign: 'center' }}>
+//           <span style={{ color: '#590070', fontSize: '40px', fontFamily: 'Didact Gothic', fontWeight: 400, wordWrap: 'break-word' }}>Front-end</span>
+//           <span style={{ color: 'black', fontSize: '40px', fontFamily: 'Didact Gothic', fontWeight: 400, wordWrap: 'break-word' }}> Developer</span>
+//         </div>
+//         <div style={{ width: '80px', height: '0px', left: '719.64px', top: '391px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+//         <div style={{ width: '80px', height: '0px', left: '719.64px', top: '571px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+//         <div style={{ width: '80px', height: '0px', left: '719.64px', top: '751px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+//         <div style={{ width: '80px', height: '0px', left: '719.64px', top: '920px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+//         <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1100px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+//         <div style={{ width: '80px', height: '0px', left: '719.64px', top: '2160px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+//         <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1980px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+//         <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1800px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+//         <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1630px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+//         <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1450px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+//         <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1280px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+//         <div style={{ height: '244.49px', left: '633px', top: '312.44px', position: 'absolute' }}>
+          
+//           {steps.map((step, index) => (
+//             <div key={index}>
+//               <Button
+//                 left={0}
+//                 top={index * 176}
+//                 label={step.title}
+//                 onClick={() => {
+//                   console.log('Step data:', step);
+//                   handleButtonClick(step);
+//                 }}
+//                 onModalOpen={handleModalClose}
+//               />
+             
+//             </div>
+            
+//           ))}
+          
+//         </div>
+//         <Modal isOpen={isModalOpen} onClose={handleModalClose} selectedStep={selectedStep} modalData={modalData} linksData={linksData} />
+//       </div>
+      
+         
+//     </main>
+//   );
+// };
+
+// export default FrontendRoadmap;
+
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/Header';
 import Button from '../components/RoadmapButton/RoadmapButton';
 import Modal from '../components/Modal/Modal';
-import { getStepsFromDatabase } from '../http/roadmapStepsAPI';
-import { getRoadmapPageFromDatabase } from '../http/roadmapsPGApi';
-import { getLinksForPageFromDatabase } from '../http/roamapsLinksApi';
-import { getAllLinksFromDatabase } from '../http/roamapsLinksApi';
+import { getRoadmapsNamesByID } from '../http/roadmapStepsAPI'; // Импортируйте функцию для получения дорожной карты
 
 const FrontendRoadmap = () => {
   const [selectedStep, setSelectedStep] = useState(null);
-  const [steps, setSteps] = useState([]);
+  const [roadmap, setRoadmap] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const [linksData, setLinksData] = useState([]);
+  const [roadmapTitle, setRoadmapTitle] = useState('');
+
+  // Читаем ID дорожной карты из локального хранилища
+  const roadmapId = localStorage.getItem('selectedRoadmapId') || 1; // Значение по умолчанию
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const stepsFromDB = await getStepsFromDatabase();
-        setSteps(stepsFromDB);
-  
-        const linksFromDB = await getAllLinksFromDatabase(); 
-        setLinksData(linksFromDB);
-  
-        if (selectedStep) {
-          const pageData = await getRoadmapPageFromDatabase(selectedStep.roadmap_ID);
-          console.log('Page data before setModalData:', pageData);
-          setModalData(pageData);
-          setModalOpen(true);
-        }
+        const roadmapData = await getRoadmapsNamesByID(roadmapId);
+        setRoadmap(roadmapData);
+        setRoadmapTitle(roadmapData.RoadmapName_name); // Замените на правильное поле из ответа
       } catch (error) {
-        console.error('Error fetching data:', error.message);
+        console.error('Error fetching roadmap data:', error.message);
       }
     };
 
     fetchData();
-  }, [selectedStep]);
+  }, [roadmapId]);
 
-  const handleButtonClick = async (step) => {
-    console.log('Handling button click with step:', step);
-    console.log('Step data:', step);
-  
+  const handleButtonClick = (step) => {
     setSelectedStep(step);
-  
-    try {
-      if (step.roadmap_ID !== undefined) {
-        const linksForPage = await getLinksForPageFromDatabase(step.roadmap_ID);
-  
-        if (linksForPage.length > 0) {
-       
-          const filteredLinks = linksForPage.filter(link => link.pages_ID === step.page_ID);
-          setModalData({ ...step, links: filteredLinks });
-          setModalOpen(true);
-        } else {
-          console.error('No links found for the selected step.');
-        }
-      } else {
-        console.error('roadmap_ID is undefined or null.');
-      }
-    } catch (error) {
-      console.error('Error fetching data for the modal:', error.message);
+    
+    // Получаем первую страницу и ссылки для выбранного шага
+    if (step.RoadmapsPages.length > 0) {
+      const pageData = step.RoadmapsPages[0];
+      setModalData({
+        ...pageData,
+        links: pageData.RoadmapsLinks, // Передаем ссылки в modalData
+      });
+      setModalOpen(true);
     }
   };
 
@@ -245,49 +344,43 @@ const FrontendRoadmap = () => {
     setModalOpen(false);
   };
 
+  if (!roadmap) return <div>Loading...</div>;
+
   return (
     <main className="main">
       <Header />
       <div style={{ width: '1440px', height: '1817px', position: 'relative', background: 'white' }}>
-        <div style={{ width: '358px', height: '59px', left: '541px', top: '147px', position: 'absolute', textAlign: 'center' }}>
-          <span style={{ color: '#590070', fontSize: '40px', fontFamily: 'Didact Gothic', fontWeight: 400, wordWrap: 'break-word' }}>Front-end</span>
-          <span style={{ color: 'black', fontSize: '40px', fontFamily: 'Didact Gothic', fontWeight: 400, wordWrap: 'break-word' }}> Developer</span>
+        <div style={{ width: '500px', height: '59px', left: '470px', top: '147px', position: 'absolute', textAlign: 'center' }}>
+          <span style={{ color: 'black', fontSize: '40px', fontFamily: 'Didact Gothic', fontWeight: 400 }}>
+            {roadmapTitle}
+          </span>
         </div>
-        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '391px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
-        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '571px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
-        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '751px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
-        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '920px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
-        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1100px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
-        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '2160px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
-        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1980px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
-        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1800px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
-        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1630px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
-        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1450px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
-        <div style={{ width: '80px', height: '0px', left: '719.64px', top: '1280px', position: 'absolute', transform: 'rotate(90.46deg)', transformOrigin: '0 0', border: '2px #1E0025 dotted' }}></div>
+        
         <div style={{ height: '244.49px', left: '633px', top: '312.44px', position: 'absolute' }}>
-          
-          {steps.map((step, index) => (
+          {roadmap.Roadmaps.map((step, index) => (
             <div key={index}>
               <Button
                 left={0}
                 top={index * 176}
                 label={step.title}
-                onClick={() => {
-                  console.log('Step data:', step);
-                  handleButtonClick(step);
-                }}
-                onModalOpen={handleModalClose}
+                onClick={() => handleButtonClick(step)}
               />
-             
+              <div style={{
+                  position: 'absolute',
+                  left: '85px',
+                  top: `${(index + 1) * 176 - 80}px`,
+                  width: '2px',
+                  height: '50px',
+                  background: 'transparent',
+                  borderLeft: '2px dashed #1E0025',
+                  transform: 'translateX(50%)',
+                }} />
             </div>
-            
           ))}
-          
         </div>
-        <Modal isOpen={isModalOpen} onClose={handleModalClose} selectedStep={selectedStep} modalData={modalData} linksData={linksData} />
+
+        <Modal isOpen={isModalOpen} onClose={handleModalClose} selectedStep={selectedStep} modalData={modalData} />
       </div>
-      
-         
     </main>
   );
 };
