@@ -1,7 +1,7 @@
 // Button.js
 import React from 'react';
 
-const Button = ({ left, top, label, onClick }) => (
+const Button = ({ left, top, label, onClick, style }) => (
   <div
     style={{
       width: '174.57px',
@@ -22,17 +22,13 @@ const Button = ({ left, top, label, onClick }) => (
         fontFamily: 'Didact Gothic',
         fontWeight: 400,
         wordWrap: 'break-word',
-        background: '#8B8BE04F',
+        background: style.background || '#8B8BE04F', // Используем переданный стиль
         boxShadow: '0px 4px 0px rgba(159, 106, 173, 0.25) inset',
         borderRadius: '12px',
         border: '1px #562D61 solid',
         cursor: 'pointer',
       }}
-      onClick={() => {
-        onClick();
-        // Можете оставить эту строку, если вам она нужна
-        // onModalOpen();
-      }}
+      onClick={onClick}
     >
       {label}
     </button>

@@ -46,6 +46,7 @@ const RoadmapsPage = () => {
           <h2 className="quiz__text2">Step by step guides and paths to learn different tools or technologies</h2>
         </div>
         <div className="line"></div>
+        
         <div className="roadmaps__buttons">
         {roadmaps.map((roadmap) => (
         <div className="container_roadmap" key={roadmap.RoadmapName_id}>

@@ -1,12 +1,13 @@
-// Modal.js
 import React, { useEffect } from 'react';
 
-const Modal = ({ isOpen, onClose, selectedStep, modalData }) => {
+const Modal = ({ isOpen, onClose, selectedStep, modalData, onStepCompleted }) => {
   useEffect(() => {
     if (modalData) {
       console.log('modalData in useEffect:', modalData);
     }
   }, [modalData]);
+
+  console.log('Selected step in Modal:', selectedStep); // Логирование выбранного шага
 
   return (
     <div
@@ -25,6 +26,29 @@ const Modal = ({ isOpen, onClose, selectedStep, modalData }) => {
         textAlign: 'center',
       }}
     >
+       <button
+  style={{
+    height:'30px',
+    width:'80px',
+    fontSize: '14px',
+    fontWeight: 'normal',
+    color: 'white',
+    background:'#9ACD32',
+    borderRadius: '4px',
+    marginLeft: '520px' // Увеличьте значение, чтобы сместить кнопку дальше вправо
+  }}
+  onClick={() => {
+    if (selectedStep && selectedStep.roadmap_ID) {
+      console.log('Step completed for ID:', selectedStep.roadmap_ID);
+      onStepCompleted(selectedStep.roadmap_ID);
+    } else {
+      console.error('No selected step available');
+    }
+    onClose();
+  }}
+>
+  Пройдено
+</button>
       <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#590070' }}>
         {modalData ? modalData.title : ''}
       </p>
@@ -41,7 +65,9 @@ const Modal = ({ isOpen, onClose, selectedStep, modalData }) => {
           ))}
         </div>
       )}
-      <button onClick={onClose}>Close</button>
+      
+      
+ <button style={{marginTop:'20px' }}onClick={onClose}>Close</button>
     </div>
   );
 };

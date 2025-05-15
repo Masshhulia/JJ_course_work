@@ -5,6 +5,7 @@ import TestResults from '../components/TestResultsProgress/TestResultsProgress.j
 import { getTestById } from "../http/testsApi";
 import { fetchTestResults } from "../http/testResultsAPI";
 import { jwtDecode } from "jwt-decode";
+import TestResultsRadar from '../components/TestResultsChart/TestResultsChart.js';
 
 const TestResultsPage = () => {
   const [userData, setUserData] = useState(null);
@@ -123,8 +124,9 @@ const TestResultsPage = () => {
                   <path d="M18 5.5H3.83L7.41 1.91L6 0.5L0 6.5L6 12.5L7.41 11.08L3.83 7.5H18V5.5Z" fill="#333333" />
                 </svg>
                 <Link to="/account" className="menu__list-link">Back</Link>
+                <TestResultsRadar testResults={testResults} />
               </div>
-
+              
               <div className="results-progress">
                 {testResults.map((result, index) => (
                   <div key={index} className="test-result-block">
@@ -133,7 +135,9 @@ const TestResultsPage = () => {
                   </div>
                 ))}
               </div>
+              
             </div>
+            
           </div>
         </main>
       </div>

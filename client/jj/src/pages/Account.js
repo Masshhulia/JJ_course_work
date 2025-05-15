@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAccountInfo } from '../http/accountApi';
+import { getRoadmapsNamesByID } from '../http/roadmapStepsAPI';
+
 
 const AccountPage = () => {
     const [userData, setUserData] = useState(null);
+    const [roadmapName, setRoadmapName] = useState(null);
 
     useEffect(() => {
         const fetchAccountInfo = async () => {
@@ -18,13 +21,33 @@ const AccountPage = () => {
         fetchAccountInfo();
     }, []);
 
+    useEffect(() => {
+        const fetchRoadmapName = async () => {
+            const roadmapId = localStorage.getItem('selectedRoadmapId'); // Получаем ID как строку
+            if (!roadmapId) return;
+
+            try {
+                const data = await getRoadmapsNamesByID(roadmapId); // Запрашиваем название по ID
+                setRoadmapName(data?.RoadmapName_name || 'Unknown roadmap');
+            } catch (error) {
+                console.error('Ошибка при получении названия дорожной карты:', error.message);
+            }
+        };
+
+        fetchRoadmapName();
+    }, []);
+
     if (!userData) {
-        return <div>You are not authorized! Would you like to log in? 
-            <Link to="/auth" className="log__in">
-        <div className="button-text">Log In</div>
-      </Link>
-      </div>;
+        return (
+            <div>
+                You are not authorized! Would you like to log in? 
+                <Link to="/auth" className="log__in">
+                    <div className="button-text">Log In</div>
+                </Link>
+            </div>
+        );
     }
+
 
     return (
         <div className="body-acc">
@@ -44,7 +67,6 @@ const AccountPage = () => {
                             <Link to="/testres" className="menu__list-link">Test results</Link>
                             <div className="line-list acc"></div>
                             <Link to="/quizes" className="menu__list-link">Tests</Link>
-                            
                             <div className="line-list acc"></div>
                         </div>
                         <div className="white_container">
@@ -82,14 +104,23 @@ const AccountPage = () => {
                             <p className="statistics">Statistics</p>
                             
                             <p className="days">Days on Juniors Journey: {userData.days}</p>
+
                             
+                           <div className="selected-roadmaps">
+                            <h3>Selected Roadmaps:</h3>
+                                  {roadmapName ? (
+                            <div className="roadmap-card">{roadmapName}</div>
+                               ) : (
+                             <p>No roadmaps selected.</p>
+                              )}
+                            </div>
+
                         </div>
                     </div>
                 </main>
             </div>
         </div>
     );
-    
 };
 
 export default AccountPage;

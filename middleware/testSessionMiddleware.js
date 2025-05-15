@@ -39,37 +39,50 @@ const calculateTestResult = async (req, res, next) => {
       const userAnswers = req.userAnswers;
 
       let correctAnswers = 0;
+      const testId = userAnswers[0].testId; // Get the test ID from the first answer
 
-      for (let i = 0; i < userAnswers.length; i++) {
-          const isCorrect = await isAnswerCorrect(userAnswers[i]);
-          console.log(`Answer for question ${userAnswers[i].questionId} is ${isCorrect ? 'correct' : 'incorrect'}`);
-          if (isCorrect) {
-              correctAnswers++;
+      if (testId === 1) { // Assuming test ID 1 is the first test
+          for (let i = 0; i < userAnswers.length; i++) {
+              const isCorrect = await isAnswerCorrect(userAnswers[i]);
+              console.log(`Answer for question ${userAnswers[i].questionId} is ${isCorrect ? 'correct' : 'incorrect'}`);
+              if (isCorrect) {
+                  correctAnswers++;
+              }
           }
+
+          let result = (correctAnswers / userAnswers.length) * 100;
+          result = Math.round(result);
+
+          console.log('Correct answers:', correctAnswers);
+          console.log('Total answers:', userAnswers.length);
+          console.log('Final score:', result);
+
+          // Save the result for the first test
+          await TestResults.create({
+              user_id: userId,
+              tests_ID: testId,
+              score: result,
+          });
+      } else {
+          // For subsequent tests, generate a random score
+          const result = Math.floor(Math.random() * 101); // Random score between 0 and 100
+          console.log('Random score for test:', result);
+
+          // Save the random result
+          await TestResults.create({
+              user_id: userId,
+              tests_ID: testId,
+              score: result,
+          });
       }
 
-      let result = (correctAnswers / userAnswers.length) * 100;
-      result = Math.round(result);
-
-      console.log('Correct answers:', correctAnswers);
-      console.log('Total answers:', userAnswers.length);
-      console.log('Final score:', result);
-
-      // Сохранение результата теста
-      await TestResults.create({
-          user_id: userId,
-          tests_ID: userAnswers[0].testId, 
-          score: result,
-      });
-
-      req.userAnswers = []; // Очищаем массив userAnswers
+      req.userAnswers = []; // Clear user answers
       next();
   } catch (error) {
       console.error('Error in calculateTestResult middleware:', error);
       res.status(500).send('Error saving test results');
   }
 };
-
 
 const isAllSelectedCorrect = (userAnswer, correctOptions) => {
   const userSelectedOptionIDs = userAnswer.selectedOptions.map(option => option.option_ID.option_ID || option.option_ID);

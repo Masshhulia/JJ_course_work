@@ -225,7 +225,7 @@ html, body {
     font-style: normal;
     font-weight: 400;
     padding-top: 2.45rem;
-    padding-left: 6.5625rem;
+    padding-left: 6rem;
 }
   
 .input__container{
@@ -258,8 +258,8 @@ input{
     z-index: -1;
 }
 .submit__button {
-    margin-top: 15rem;
-    margin-left: 10%; 
+    margin-top: 12rem;
+    margin-left: 11%; 
     width: 9.6875rem;
     height: 3.75rem;
     flex-shrink: 0;
@@ -282,7 +282,7 @@ input{
 }
 .autorize__container{
     max-width: 84rem;
-    height: 50.375rem;
+    height: 90.375rem;
     flex-shrink: 0;
     border-radius: 1.1875rem;
     background: rgba(139, 139, 224, 0.31);
@@ -334,11 +334,12 @@ input{
 }
 
 .container1 {
-    width: 28.125rem;
+    width: 35.125rem;
     height: 7.4375rem;
     flex-shrink: 0;
     border-radius: 0.6875rem;
     background: #FFF;
+    border: 0.5px solid rgb(16, 1, 37);
     backdrop-filter: blur(25px);
     margin-left: 6.5625rem;
     margin-top: 3.1875rem;
@@ -547,31 +548,39 @@ input{
     max-width: 400px; /* Максимальная ширина кнопки */
     height: 119px;
     border-radius: 11px;
-    background: rgba(139, 139, 224, 0.31);
+    background: rgba(255, 255, 255, 0.31); /* Цвет фона */
     backdrop-filter: blur(25px);
-    margin-bottom: 110px; /* Увеличенный отступ между кнопками */
+    margin-bottom: 60px; /* Увеличенный отступ между кнопками */
     box-sizing: border-box; /* Включает padding и border в общую ширину и высоту */
+    border: 2px solid white; /* Контур белого цвета */
+    cursor: pointer; /* Указатель при наведении */
+    display: flex; /* Используем flex для выравнивания текста */
+    align-items: center; /* Центрируем текст по вертикали */
+    padding: 0; /* Убираем внутренние отступы */
 }
-.text_in_button-r{
+
+.text_in_button-r {
     font-size: 32px;
     font-style: normal;
     font-weight: 400;
-    opacity: 0.5;
+    opacity: 1; /* Убираем полупрозрачность */
     margin-left: 44px;
     padding-top: 6px;
 }
-.text_in_button2-r{
+
+.text_in_button2-r {
     max-width: 352px;
     font-size: 16px;
     font-style: normal;
-    opacity: 0.5;
+    opacity: 0.7; /* Меньшая прозрачность для второго текста */
     margin-left: 44px;
 }
+
 .roadmaps__buttons {
     display: flex;
-    flex-direction: column; /* Расположение кнопок в столбик */
-    align-items: flex-start; /* Выравнивание кнопок по левому краю */
-    padding: 60px; /* Отступы от краев контейнера */
+    flex-direction: column; 
+    align-items: flex-start; 
+    padding: 0; /* Убираем padding для контейнера кнопок */
 }
 .advices-list{
     display: flex;
@@ -851,11 +860,51 @@ ol {
     margin-left: 115px;
     color: #454676;
     opacity: 0.8;
+    color: #454676;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    opacity: 0.8;
 }
+
 .progress-text-row{
     grid-row: 1;
     grid-column: 2;
 }
+.selected-roadmaps {
+    margin-top: 270px;
+    margin-left: 95px;
+    padding: 20px;
+    border-radius: 12px;
+
+    max-width: 300px;
+}
+
+.selected-roadmaps h3 {
+     color: #454676;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    opacity: 0.8;
+    margin-bottom: 20px;
+}
+
+.roadmap-card {
+    background-color: #ffffff;
+    border-left: 4px solid #6c63ff;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+    color: #333;
+    transition: transform 0.2s ease;
+}
+
+.roadmap-card:hover {
+    transform: translateY(-2px);
+}
+
 .circle{
     width: 89px;
     height: 89px;
