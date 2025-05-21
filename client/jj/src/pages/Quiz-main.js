@@ -26,10 +26,10 @@ const Quiz_main = () => {
       <section className="autorize">
         <div className="autorize__container">
           <div className="title__quiz">
-            <h2 className="quiz__text">Questions</h2>
+            <h2 className="quiz__text">Тесты</h2>
           </div>
           <div className="subtitle__quiz">
-            <h2 className="quiz__text2">Quizzes to help you test and improve your knowledge and skill up</h2>
+            <h2 className="quiz__text2">Тесты, которые помогут вам проверить и улучшить свои знания и навыки</h2>
           </div>
           {tests.map((test) => (
             <QuizLink key={test.test_ID}  to={`/quiz`} testId={test.test_ID} text={test.title} description={test.Description} />

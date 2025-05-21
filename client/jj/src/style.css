@@ -225,7 +225,7 @@ html, body {
     font-style: normal;
     font-weight: 400;
     padding-top: 2.45rem;
-    padding-left: 6rem;
+    padding-left: 3rem;
 }
   
 .input__container{
@@ -260,7 +260,7 @@ input{
 .submit__button {
     margin-top: 12rem;
     margin-left: 11%; 
-    width: 9.6875rem;
+    width: 13rem;
     height: 3.75rem;
     flex-shrink: 0;
     border-radius: 2.9375rem;
@@ -268,6 +268,7 @@ input{
     backdrop-filter: blur(25px);
     display: inline-block;
     padding: 0.9375rem 2.375rem;
+    text-align: center;
     font-size: 1.5rem;
     color: #FFF;
 }
@@ -406,7 +407,7 @@ input{
     justify-content: center;
 }
 .upper_text{
-    max-width: 25rem;
+    max-width: 35rem;
 }
 .upper_text2{
     max-width: 58rem;
@@ -470,8 +471,8 @@ input{
 
 .question__text{
     text-align: center;
-    max-width: 43.75rem;
-    margin-top: 4.4375rem;
+    max-width: 70rem;
+    margin-top: 1.4375rem;
     font-size: 3rem;
     font-style: normal;
     font-weight: 400;
@@ -574,6 +575,7 @@ input{
     font-style: normal;
     opacity: 0.7; /* Меньшая прозрачность для второго текста */
     margin-left: 44px;
+    margin-top: -10px;
 }
 
 .roadmaps__buttons {
@@ -872,13 +874,16 @@ ol {
     grid-column: 2;
 }
 .selected-roadmaps {
-    margin-top: 270px;
-    margin-left: 95px;
-    padding: 20px;
-    border-radius: 12px;
-
-    max-width: 300px;
+  display: flex;
+  max-width: 300px;
+  flex-direction: column;
+  /* gap: 20px; */
+  padding: 20px;
+  margin-top: 200px;
+  margin-left: 92px;
+  box-sizing: border-box;
 }
+
 
 .selected-roadmaps h3 {
      color: #454676;
@@ -904,7 +909,22 @@ ol {
 .roadmap-card:hover {
     transform: translateY(-2px);
 }
+.roadmap-card1 {
+    background-color: #ffffff;
+    border-left: 4px solid #6c63ff;
+    padding: 12px 16px;
+    margin-top: 25px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+    color: #333;
+    transition: transform 0.2s ease;
+}
 
+.roadmap-card1:hover {
+    transform: translateY(-2px);
+}
 .circle{
     width: 89px;
     height: 89px;
@@ -1071,4 +1091,45 @@ ol {
         gap: 5rem;
     }
 }
-  
+  .download-link {
+    display: inline-block;
+    
+    color: #fff;
+    background-color: #6c63ff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: normal;
+}
+.download-link:hover {
+    background-color: #a19dfd;
+}
+
+  .download-link1 {
+    display: inline-block;
+    
+    color: #fff;
+    background-color: #8079f5;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: normal;
+}
+.download-link1:hover {
+    background-color: #9792f6;
+}
+.roadmap-card h3{
+    color: #454676;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}

@@ -9,11 +9,14 @@ const errorHandler = require('./middleware/ErrorHandlingMiddleware.js');
 const authMiddleware = require('./middleware/authMiddleware.js')
 const { saveUserAnswers, calculateTestResult } = require('./middleware/testSessionMiddleware'); // Подключаем middleware
 const PORT = process.env.PORT || 8080;
+const path = require('path');
+
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(fileUpload({}))
+app.use('/static', express.static(path.join(__dirname, 'static')));
 
 
 app.use('/api/test', saveUserAnswers, calculateTestResult);

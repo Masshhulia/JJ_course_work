@@ -34,19 +34,19 @@ const AuthorizationForm = () => {
     <section className="autorize">
       <div className="autorize__container">
         <div className="autorize_text">
-          <h2 className="enter__data">Enter your data</h2>
+          <h2 className="enter__data">Введите свои данные</h2>
         </div>
         <div className="form__container">
           <form onSubmit={handleSubmit} className="form">
             <input type="text" className="input_field" placeholder="Login/Email" onChange={handleEmailChange} />
-            <input type="password" className="input_field" placeholder="Password" onChange={handlePasswordChange} />
+            <input type="password" className="input_field" placeholder="Пароль" onChange={handlePasswordChange} />
             <button type="submit" className="submit__button2">
-              Submit
+              Войти
             </button>
           </form>
           {error && <div className="error" style={{ color: 'red' }}>{error}</div>}
           <div className="register_link"> 
-            Don't have an account? <Link to="/#create">Register</Link>
+            Еще нет аккаунта? <Link to="/#create">Зарегистрироваться</Link>
           </div>
         </div>
       </div>

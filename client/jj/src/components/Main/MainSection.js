@@ -6,13 +6,13 @@ const MainSection = () => {
       <section className="top">
         <div className="container">
           <h1 className="title">
-            Juniors Journey - it’s your way to study new technologies
+            Juniors Journey - твой путь к изучению новых технологий
           </h1>
           <h2 className="subtitle">
-            Guide to the world of code: follow your path with our Roadmaps!
+            Путеводитель по миру кода: следуйте своему пути с помощью наших дорожных карт!
           </h2>
           <a href="#create" className="start__link">
-            Start learning now
+            Начни изучение сейчас
           </a>
         </div>
       </section>

@@ -31,7 +31,10 @@ const User = sequelize.define('User', {
     RegistrationDate: {
       type: DataTypes.DATE,
       defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-    }
+    },
+    documents: {
+      type: DataTypes.TEXT
+    },
   });
 
   const UsageDays = sequelize.define('UsageDays', {

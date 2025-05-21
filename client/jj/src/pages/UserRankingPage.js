@@ -37,13 +37,13 @@ const UserRankingPage = () => {
               <p className="job">{userData.job}</p>
             </div>
             <div className="menu_pages">
-              <Link to="/roadmaps" className="menu__list-link">Roadmaps</Link>
+              <Link to="/roadmaps" className="menu__list-link">Дорожные карты</Link>
               <div className="line-list acc"></div>
-              <Link to="/urating" className="menu__list-link">Rating</Link>
+              <Link to="/urating" className="menu__list-link">Рейтинг</Link>
               <div className="line-list acc"></div>
-              <Link to="/testres" className="menu__list-link">Test results</Link>
+              <Link to="/testres" className="menu__list-link">Результаты тестов</Link>
               <div className="line-list acc"></div>
-              <Link to="/quizes" className="menu__list-link">Tests</Link>
+              <Link to="/quizes" className="menu__list-link">Теста</Link>
               <div className="line-list acc"></div>
             </div>
             <div className="white_container">
@@ -55,10 +55,10 @@ const UserRankingPage = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none">
                   <path d="M18 5.5H3.83L7.41 1.91L6 0.5L0 6.5L6 12.5L7.41 11.08L3.83 7.5H18V5.5Z" fill="#333333" />
                 </svg>
-                <Link to="/account" className="menu__list-link">Back</Link>
+                <Link to="/account" className="menu__list-link">Назад</Link>
               </div>
               <div className="results-progress">
-                    <h1 style={{ fontSize: '2em', color: '#454676'}}>User rating by days of use Juniors Journey</h1>
+                    <h1 style={{ fontSize: '2em', color: '#454676'}}>Рейтинг пользователей Juniors Journey</h1>
                     {sortedUsers.slice(0, 5).map((user, index) => (
                         <div key={user.id} style={{ margin: '20px 0', padding: '10px', backgroundColor: '#f8f9fa', borderRadius: '5px' }}>
                         <h2 style={{ fontSize: '1.5em' ,fontWeight: 'normal'}}>{index + 1}. {user.name}</h2>

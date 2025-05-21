@@ -34,16 +34,16 @@ const userAuth = localStorage.getItem('auth');
           <nav className="menu">
             <ul className="menu__list">
               <li className="menu__item">
-                <Link to="/main" className="menu__list-link">Home</Link>
+                <Link to="/main" className="menu__list-link">Главная</Link>
               </li>
               <li className="menu__item">
-                <Link to="/advices" className="menu__list-link">Advices</Link>
+                <Link to="/advices" className="menu__list-link">Советы</Link>
               </li>
               <li className="menu__item">
-                <Link to="/roadmaps" className="menu__list-link">RoadMaps</Link>
+                <Link to="/roadmaps" className="menu__list-link">Дорожные карты</Link>
               </li>
               <li className="menu__item">
-                <Link to="/quizes" className="menu__list-link">Quiz</Link>
+                <Link to="/quizes" className="menu__list-link">Тесты</Link>
               </li>
             </ul>
             
@@ -55,17 +55,17 @@ const userAuth = localStorage.getItem('auth');
          </Link>
           )}
           <Link to="/auth" className="log__in">
-            <div className="button-text">Log In</div>
+            <div className="button-text">Вход</div>
           </Link>
           <Link to="/#create" className="log__up">
-            <div className="button-text">Sign In</div>
+            <div className="button-text">Регистрация</div>
           </Link>
           <Link to="/account" className="acc_h">
           <img src="images/acc.svg" alt="" className="" />
           </Link>
           {userAuth === 'true' && (
           <Link to="/main" className="log__up" onClick={handleLogout}>
-            <div className="button-text">Logout</div>
+            <div className="button-text">Выйти</div>
           </Link>
           )}
           

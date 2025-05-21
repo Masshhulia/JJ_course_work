@@ -40,10 +40,10 @@ const RoadmapsPage = () => {
       <Header />
       <section className="roadmaps">
         <div className="title__quiz">
-          <h2 className="quiz__text">Developer Roadmaps</h2>
+          <h2 className="quiz__text">Дорожные карты</h2>
         </div>
         <div className="subtitle__quiz">
-          <h2 className="quiz__text2">Step by step guides and paths to learn different tools or technologies</h2>
+          <h2 className="quiz__text2">Пошаговые руководства и пути изучения различных инструментов и технологий</h2>
         </div>
         <div className="line"></div>
         

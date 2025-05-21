@@ -1,0 +1,78 @@
+{
+  "backend": {
+    "beginner": [
+      { "name": "Основы Python", "description": "Изучение синтаксиса, переменные, типы данных", "hours": 5 },
+      { "name": "Условные операторы и циклы", "description": "if/else, for, while", "hours": 4 },
+      { "name": "Работа с файлами и модулями", "description": "os, pathlib, file IO", "hours": 3 },
+      { "name": "Основы Git", "description": "Создание репозиториев, коммиты, ветки", "hours": 3 },
+      { "name": "Функции и модули", "description": "Определение функций, импорт/экспорт модулей", "hours": 4 },
+      { "name": "Работа с библиотеками", "description": "Установка и использование сторонних библиотек", "hours": 5 },
+      { "name": "Основы работы с API", "description": "Запросы к API, JSON", "hours": 4 },
+      { "name": "Обработка ошибок", "description": "Try/except, логирование", "hours": 3 },
+      { "name": "Основы ООП", "description": "Классы, объекты, инкапсуляция", "hours": 6 },
+      { "name": "Введение в Flask", "description": "Создание простого веб-приложения", "hours": 5 }
+    ],
+    "intermediate": [
+      { "name": "ООП в Python", "description": "Классы, наследование, инкапсуляция", "hours": 6 },
+      { "name": "Работа с БД (PostgreSQL)", "description": "SQL, подключение через psycopg2, ORM", "hours": 6 },
+      { "name": "Создание API с Flask", "description": "Роутинг, обработка запросов", "hours": 5 },
+      { "name": "Тестирование", "description": "Unit-тесты, PyTest", "hours": 4 },
+      { "name": "Асинхронное программирование", "description": "async/await, asyncio", "hours": 5 },
+      { "name": "Работа с Docker", "description": "Создание и управление контейнерами", "hours": 5 },
+      { "name": "Основы CI/CD", "description": "Автоматизация сборки и деплоя", "hours": 4 },
+      { "name": "Создание RESTful API", "description": "Создание и документирование API", "hours": 5 },
+      { "name": "Работа с Redis", "description": "Кэширование и управление сессиями", "hours": 3 },
+      { "name": "Основы GraphQL", "description": "Создание запросов и мутаций", "hours": 4 }
+    ],
+    "advanced": [
+      { "name": "Асинхронное программирование", "description": "async/await, aiohttp", "hours": 6 },
+      { "name": "Docker для разработки", "description": "Сборка образов, запуск контейнеров", "hours": 5 },
+      { "name": "FastAPI", "description": "Асинхронные API, OpenAPI, валидация", "hours": 6 },
+      { "name": "CI/CD", "description": "Настройка GitHub Actions, деплой", "hours": 5 },
+      { "name": "Микросервисы", "description": "Разработка и взаимодействие микросервисов", "hours": 6 },
+      { "name": "Обеспечение безопасности API", "description": "OAuth, JWT, безопасность данных", "hours": 5 },
+      { "name": "Оптимизация производительности", "description": "Кэширование, профилирование", "hours": 5 },
+      { "name": "Тестирование производительности", "description": "Load testing, инструменты", "hours": 4 },
+      { "name": "Работа с серверless архитектурой", "description": "AWS Lambda, Azure Functions", "hours": 5 },
+      { "name": "Проектирование баз данных", "description": "Нормализация, индексы, оптимизация запросов", "hours": 6 }
+    ]
+  },
+  "frontend": {
+    "beginner": [
+      { "name": "HTML и основы CSS", "description": "Теги, структура страницы, селекторы", "hours": 4 },
+      { "name": "Введение в JavaScript", "description": "Типы данных, функции, DOM", "hours": 5 },
+      { "name": "Инструменты разработки", "description": "Chrome DevTools, Live Server", "hours": 2 },
+      { "name": "Основы адаптивной верстки", "description": "Медиа-запросы, флексбоксы", "hours": 4 },
+      { "name": "Работа с формами", "description": "Создание и валидация форм", "hours": 3 },
+      { "name": "Основы AJAX", "description": "Запросы к серверу, работа с данными", "hours": 3 },
+      { "name": "Введение в CSS-препроцессоры", "description": "Sass, LESS", "hours": 3 },
+      { "name": "Основы работы с библиотеками", "description": "jQuery, Bootstrap", "hours": 4 },
+      { "name": "Создание простого проекта", "description": "Разработка одностраничного приложения", "hours": 6 },
+      { "name": "Оптимизация загрузки страниц", "description": "Lazy loading, минификация", "hours": 3 }
+    ],
+    "intermediate": [
+      { "name": "Современный JavaScript", "description": "ES6+, стрелочные функции, промисы", "hours": 5 },
+      { "name": "Работа с REST API", "description": "fetch, JSON, обработка ошибок", "hours": 4 },
+      { "name": "CSS Flexbox и Grid", "description": "Верстка адаптивных интерфейсов", "hours": 5 },
+      { "name": "Основы React", "description": "Компоненты, JSX, props, state", "hours": 6 },
+      { "name": "Управление состоянием в React", "description": "Context API, Redux", "hours": 6 },
+      { "name": "Работа с маршрутизацией", "description": "React Router, динамические маршруты", "hours": 5 },
+      { "name": "Тестирование компонентов", "description": "Jest, React Testing Library", "hours": 4 },
+      { "name": "Интеграция с API", "description": "Создание запросов и получение данных", "hours": 5 },
+      { "name": "Анимации в React", "description": "CSS-анимации, библиотека Framer Motion", "hours": 4 },
+      { "name": "Оптимизация производительности приложений", "description": "Использование React.memo, lazy loading", "hours": 5 }
+    ],
+    "advanced": [
+      { "name": "React Router и хуки", "description": "Навигация, useEffect, useState", "hours": 6 },
+      { "name": "TypeScript с React", "description": "Типизация компонентов, props и state", "hours": 5 },
+      { "name": "Тестирование интерфейсов", "description": "Jest, React Testing Library", "hours": 4 },
+      { "name": "Сборка проектов", "description": "Webpack, Vite, оптимизация", "hours": 4 },
+      { "name": "Создание Progressive Web Apps", "description": "Service Workers, манифесты", "hours": 6 },
+      { "name": "Работа с GraphQL", "description": "Создание запросов и мутаций", "hours": 5 },
+      { "name": "Интернационализация", "description": "Локализация приложений", "hours": 3 },
+      { "name": "Оптимизация SEO для SPA", "description": "Методы улучшения индексации", "hours": 5 },
+      { "name": "Создание собственных хуков", "description": "Пользовательские хуки в React", "hours": 4 },
+      { "name": "Работа с библиотеками компонентов", "description": "Styled Components, Material-UI", "hours": 5 }
+    ]
+  }
+}

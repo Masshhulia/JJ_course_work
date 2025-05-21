@@ -7,6 +7,8 @@ const accountController = require('../controllers/AccountController');
 router.get('/info', authMiddleware, accountController.getAccountInfo);
 router.get('/rating', authMiddleware, accountController.getAllUsers)
 router.put('/info', authMiddleware, accountController.updateAccountInfo);
+router.get('/download/:userId', accountController.downloadDocument);
+
 
 
 

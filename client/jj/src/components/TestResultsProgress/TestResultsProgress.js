@@ -13,11 +13,11 @@ const TestResults = ({ testResults }) => {
                                 style={{ height: '10px', width: `${result.score}%` }}
                             ></div>
                         </div>
-                        <div style={{ fontSize: '20px' }}>{result.score} out of 100%</div>
+                        <div style={{ fontSize: '20px' }}>{result.score} из 100%</div>
                     </div>
                 ))
             ) : (
-                <div>No test results available.</div>
+                <div>Нет доступных результатов теста.</div>
             )}
         </div>
     );

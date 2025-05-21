@@ -22,10 +22,10 @@ const Advices = () => {
       <section className="roadmaps">
        
         <div className="title__quiz">
-          <h2 className="quiz__text">Advices</h2>
+          <h2 className="quiz__text">Полезные ссылки</h2>
         </div>
         <div className="subtitle__quiz">
-          <h2 className="quiz__text2">Succinct graphical explanations to engineering topics.</h2>
+          <h2 className="quiz__text2">Ссылки на полезные материалы по программированию</h2>
         </div>
         <div className="line"></div>
         <div className="advices-list">

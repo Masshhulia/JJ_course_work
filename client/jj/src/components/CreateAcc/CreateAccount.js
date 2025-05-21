@@ -33,17 +33,17 @@ const CreateAccount = () => {
   return (
     <section className="create__account" id="create">
       <div className="create__container">
-        <h2 className="create__title">Create an account</h2>
+        <h2 className="create__title">Создайте свой аккаунт</h2>
         <div className="input__container">
-          <input type="text" className="input_field" placeholder="Name" onChange={handleFirstNameChange} />
-          <input type="text" className="input_field" placeholder="Surname" onChange={handleLastNameChange} />
-          <input type="email" className="input_field" placeholder="Email" onChange={handleEmailChange} />
-          <input type="email" className="input_field" placeholder="Job" onChange={handleJobChange} />
+          <input type="text" className="input_field" placeholder="Имя" onChange={handleFirstNameChange} />
+          <input type="text" className="input_field" placeholder="Фамилия" onChange={handleLastNameChange} />
+          <input type="email" className="input_field" placeholder="Эл.почта" onChange={handleEmailChange} />
+          <input type="email" className="input_field" placeholder="Должность" onChange={handleJobChange} />
           <input type="email" className="input_field" placeholder="LinkedIn" onChange={handleLinkedChange} />
-          <input type="text" className="input_field" placeholder="Password" onChange={handlePasswordChange} />
+          <input type="text" className="input_field" placeholder="Пароль" onChange={handlePasswordChange} />
         </div>
         <button className="submit__button" onClick={handleRegistration}>
-         Submit
+         Подтвердить
         </button>
         {error && <div className="error" style={{ color: 'red' }}>{error}</div>}
         <img src="images/create_people.svg" alt="" className="people__img" />

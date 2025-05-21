@@ -11,8 +11,6 @@ import {fetchTestResults} from "../http/testResultsAPI"
 import { jwtDecode } from "jwt-decode";
 
 
-
-
 const Quiz = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);

@@ -6,7 +6,8 @@ CREATE TABLE users(
     email VARCHAR(255),
     job VARCHAR(255),
     linked_in VARCHAR(255),
-    RegistrationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    RegistrationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    documents TEXT
 );
 
 CREATE TABLE UsageDays (
